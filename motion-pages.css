@@ -1,0 +1,640 @@
+/* TCCC PO Request Portal — additive Fizz & Glass motion layer.
+   Loaded after motion-effects.css. No existing selectors are rewritten.
+   Animated properties in this layer are opacity and transform only. */
+:root {
+  --mxp-ease: cubic-bezier(.16, 1, .3, 1);
+  --mxp-spring: cubic-bezier(.34, 1.56, .64, 1);
+  --mxp-red: #C8102E;
+  --mxp-teal: #0B7772;
+}
+
+/* Decor-only layers never take focus, intercept pointer input or join layout. */
+.mxp-nav-pill,
+.mxp-header-shadow,
+.mxp-hero-image-layer,
+.mxp-workflow-dot,
+.mxp-card-glow,
+.mxp-skeleton-layer,
+.mxp-skeleton-row,
+.mxp-summary-flash-overlay,
+.mxp-validation-indicator,
+.mxp-wizard-progress-track,
+.mxp-wizard-progress-fill,
+.mxp-success-ring,
+.mxp-success-check {
+  pointer-events: none !important;
+  contain: paint;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Shared navigation indicator: it follows the active item using transform only. */
+  .side-nav { position: relative; }
+  .side-nav .nav-item { position: relative; z-index: 1; }
+  .mxp-nav-pill {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 0;
+    width: 100%;
+    height: 40px;
+    box-sizing: border-box;
+    border: 1px solid rgba(255,255,255,.24);
+    border-radius: 9px;
+    background: rgba(255,255,255,.035);
+    opacity: 0;
+    transform: translate3d(0,0,0) scaleX(.97);
+    transform-origin: center;
+    transition: transform .5s var(--mxp-ease), opacity .2s var(--mxp-ease);
+  }
+  .mxp-nav-pill.mxp-visible { opacity: .9; }
+
+  /* Shared header shadow fades in when the document is scrolled. */
+  .topbar { isolation: isolate; }
+  .topbar::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    box-shadow: 0 12px 24px rgba(17, 38, 52, .12);
+    opacity: 0;
+    transition: opacity .2s var(--mxp-ease);
+  }
+  .topbar.mxp-scrolled::after { opacity: 1; }
+
+  /* Breadcrumb cross-fade; the text node itself is never changed by this layer. */
+  #breadcrumb-current.mxp-breadcrumb-change { animation: mxpBreadcrumbIn .36s var(--mxp-ease) both; }
+
+  /* Native view transitions when supported. The JS falls back to a view entrance. */
+  #view-home, #view-create, #view-track { view-transition-name: mxp-page; }
+  html.mxp-native-vt::view-transition-old(mxp-page) {
+    animation: mxpViewOut .6s var(--mxp-ease) both;
+  }
+  html.mxp-native-vt::view-transition-new(mxp-page) {
+    animation: mxpViewIn .6s var(--mxp-ease) both;
+  }
+  #view-home.mxp-view-in,
+  #view-create.mxp-view-in,
+  #view-track.mxp-view-in { animation: mxpViewIn .6s var(--mxp-ease) both; }
+  html.mxp-native-vt #view-home.mxp-view-in,
+  html.mxp-native-vt #view-create.mxp-view-in,
+  html.mxp-native-vt #view-track.mxp-view-in { animation: none; }
+  html.mxp-fallback-vt #view-home.mxp-view-out,
+  html.mxp-fallback-vt #view-create.mxp-view-out,
+  html.mxp-fallback-vt #view-track.mxp-view-out { animation: mxpViewOut .3s var(--mxp-ease) both; }
+  html.mxp-fallback-vt #view-home.mxp-view-in,
+  html.mxp-fallback-vt #view-create.mxp-view-in,
+  html.mxp-fallback-vt #view-track.mxp-view-in { animation: mxpViewIn .3s var(--mxp-ease) both; }
+
+  /* CTA shine. The shimmer is a single opacity-masked overlay and only runs while visible. */
+  #reviewer-access,
+  .top-create,
+  #view-home .home-primary-action,
+  #wizard-next,
+  #submit-request,
+  #track-search-submit { position: relative; isolation: isolate; }
+  .top-create::after,
+  #view-home .home-primary-action::after,
+  #wizard-next::after,
+  #submit-request::after,
+  #track-search-submit::after {
+    content: "";
+    position: absolute;
+    inset: 1px;
+    z-index: 2;
+    border-radius: inherit;
+    pointer-events: none;
+    contain: paint;
+    background: linear-gradient(108deg, transparent 25%, rgba(255,255,255,.56) 48%, transparent 70%);
+    transform: translate3d(-130%,0,0);
+    opacity: 0;
+  }
+  .mxp-cta-shine.mxp-loop-on::after { animation: mxpShineLoop 5.2s ease-in-out infinite; }
+  .mxp-cta-shine.mxp-shine-hover::after { animation: mxpShineSweep .72s var(--mxp-ease) both; }
+
+  /* The home hero image gets one low-intensity zoom-settle overlay. Text retains the original stagger. */
+  #view-home .home-welcome-hero { position: relative; }
+  .mxp-hero-image-layer {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    border-radius: inherit;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0;
+    transform: scale(1.06);
+    transform-origin: center;
+  }
+  .mxp-hero-image-layer.mxp-hero-settle { animation: mxpHeroSettle 1.4s var(--mxp-ease) both; }
+  #view-home .home-welcome-copy,
+  #view-home .home-welcome-side { will-change: auto; }
+  .mxp-home-parallax { will-change: auto; }
+
+  /* Soft colored card glows: separate opacity-only overlays; existing tilt/spotlight remain intact. */
+  .home-action-card { isolation: isolate; }
+  .mxp-card-glow {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity .2s var(--mxp-ease);
+    background: radial-gradient(ellipse at 50% 100%, var(--mxp-glow, rgba(200,16,46,.16)), transparent 72%);
+  }
+  .home-action-card:hover .mxp-card-glow,
+  .home-action-card:focus-visible .mxp-card-glow { opacity: 1; }
+  .home-action-number.mxp-badge-pop { animation: mxpBadgePop .42s var(--mxp-spring) both; }
+  #view-home .home-action-cta b { display: inline-block; transition: transform .2s var(--mxp-ease); }
+  #view-home .home-action-card:hover .home-action-cta b,
+  #view-home .home-action-card:focus-visible .home-action-cta b { transform: translate3d(4px,0,0); }
+  #view-home .home-trust-row > span i { transition: transform .2s var(--mxp-spring); }
+  #view-home .home-trust-row > span:hover i,
+  #view-home .home-trust-row > span:focus-within i { transform: scale(1.16); }
+
+  /* Workflow dot is a single transform-only loop, gated by visibility and lite mode. */
+  #view-home .home-workflow-steps { position: relative; }
+  .mxp-workflow-dot {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 5;
+    width: 6px;
+    height: 6px;
+    margin: -3px 0 0 -3px;
+    border-radius: 50%;
+    background: var(--mxp-red);
+    opacity: 0;
+    transform: translate3d(0,0,0) scale(.7);
+    box-shadow: 0 0 0 3px rgba(200,16,46,.10);
+  }
+  .mxp-workflow-dot.mxp-loop-on {
+    opacity: .9;
+    animation: mxpFlowTravel 9.6s linear infinite alternate;
+  }
+
+  /* Quote ribbon and footer quote use low-amplitude, viewport-paused motion. */
+  #view-home .home-inspiration-ribbon.mxp-loop-on { animation: mxpWaveDrift 8s ease-in-out infinite alternate; }
+  .main-footer-quote.mxp-footer-entered:not(.mx-reveal) { animation: mxpFooterIn .55s var(--mxp-ease) both; }
+  #view-track .track-hero-copy h1 em.mxp-track-underline { position: relative; display: inline-block; }
+  #view-track .track-hero-copy h1 em.mxp-track-underline::after { content: ""; position: absolute; left: 0; right: 0; bottom: -3px; height: 2px; border-radius: 2px; background: var(--mxp-red); transform: scaleX(0); transform-origin: left center; animation: mxpUnderlineDraw .48s var(--mxp-ease) both; pointer-events: none; }
+  @keyframes mxpUnderlineDraw { to { transform: scaleX(1); } }
+
+  /* Create PO: stepper entrance, progress fill and direction-aware incoming panel. */
+  #wizard-stepper { position: relative; }
+  .mxp-wizard-progress-track {
+    position: absolute;
+    z-index: 0;
+    height: 2px;
+    border-radius: 2px;
+    background: rgba(200,16,46,.12);
+    overflow: hidden;
+  }
+  .mxp-wizard-progress-fill {
+    display: block;
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #C8102E, #0B7772);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform .5s var(--mxp-ease);
+  }
+  .mxp-stepper-entrance .wizard-step-button { animation: mxpStepStagger .48s var(--mxp-ease) both; }
+  #view-create .form-summary-rail.mxp-summary-rail-in { animation: mxpSummaryRailIn .5s var(--mxp-ease) both; }
+  #view-create .summary-help.mxp-summary-tip-in { animation: mxpSummaryTipIn .42s var(--mxp-ease) 240ms both; }
+  #view-create .wizard-panel.active.mxp-form-panel-in > .form-card:first-child { animation: mxpViewIn .5s var(--mxp-ease) both; }
+  .mxp-stepper-entrance .wizard-step-button:nth-child(1) { animation-delay: 0ms; }
+  .mxp-stepper-entrance .wizard-step-button:nth-child(2) { animation-delay: 65ms; }
+  .mxp-stepper-entrance .wizard-step-button:nth-child(3) { animation-delay: 130ms; }
+  .mxp-stepper-entrance .wizard-step-button:nth-child(4) { animation-delay: 195ms; }
+  .mxp-stepper-entrance .wizard-step-button:nth-child(5) { animation-delay: 260ms; }
+  .mxp-stepper-entrance .wizard-step-button:nth-child(6) { animation-delay: 325ms; }
+  .wizard-step-button { position: relative; }
+  .wizard-step-button.completed .wizard-step-number { position: relative; color: transparent; }
+  .wizard-step-button.completed .wizard-step-number::after {
+    content: "";
+    position: absolute;
+    left: 10px;
+    top: 7px;
+    width: 5px;
+    height: 8px;
+    border-right: 2px solid #16784b;
+    border-bottom: 2px solid #16784b;
+    opacity: 1;
+    transform: rotate(45deg) scale(1);
+    transform-origin: center;
+    transition: transform .2s var(--mxp-spring), opacity .2s var(--mxp-ease);
+  }
+  .wizard-stepper-buttons { position: relative; z-index: 1; }
+  .wizard-panel.active.mxp-step-forward { animation: mxpStepForward .48s var(--mxp-ease) both; }
+  .wizard-panel.active.mxp-step-backward { animation: mxpStepBackward .48s var(--mxp-ease) both; }
+
+  /* Focus and validation: preserve existing keyboard focus; red overlay fades, it never changes layout. */
+  #view-create .field:focus-within { position: relative; outline: 2px solid rgba(200,16,46,.18); outline-offset: 2px; }
+  #view-create .field:focus-within::after {
+    content: ""; position: absolute; inset: -3px; z-index: 3; border: 1px solid rgba(200,16,46,.42);
+    border-radius: 8px; opacity: 0; transform: scale(.99); pointer-events: none; contain: paint;
+    animation: mxpFocusRing .24s var(--mxp-ease) both;
+  }
+  #view-create .field:focus-within input,
+  #view-create .field:focus-within select,
+  #view-create .field:focus-within textarea { outline-color: rgba(200,16,46,.28); }
+  .field.mxp-validation-shake { position: relative; animation: mxpFieldShake .42s var(--mxp-ease) both; }
+  .mxp-validation-indicator {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    border: 1px solid rgba(200,16,46,.7);
+    border-radius: 7px;
+    opacity: 0;
+    transform: scale(.99);
+    animation: mxpValidationFlash .85s var(--mxp-ease) both;
+  }
+  .mxp-summary-row { position: relative; isolation: isolate; }
+  .mxp-summary-row > * { position: relative; z-index: 1; }
+  .mxp-summary-flash-overlay {
+    position: absolute;
+    inset: -2px;
+    z-index: 0;
+    border-radius: 7px;
+    background: rgba(200,16,46,.09);
+    opacity: 0;
+    transform: scale(.99);
+    animation: mxpSummaryFlash 1s var(--mxp-ease) both;
+  }
+  .summary-row strong.mxp-summary-value-in,
+  #summary-total.mxp-summary-value-in { animation: mxpSummaryValueIn .32s var(--mxp-ease) both; }
+  #save-draft { position: relative; isolation: isolate; }
+  #save-draft.mxp-save-pending::after {
+    content: "";
+    position: absolute;
+    right: 9px;
+    top: 50%;
+    width: 12px;
+    height: 12px;
+    box-sizing: border-box;
+    border: 2px solid rgba(11,119,114,.24);
+    border-top-color: #0B7772;
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translateY(-50%);
+    animation: mxpSpinner .7s linear infinite;
+  }
+  #save-draft.mxp-save-success { animation: mxpSavedPulse .42s var(--mxp-spring) both; }
+  #wizard-next { overflow: hidden; }
+  #wizard-next.mxp-loop-on::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: rgba(255,255,255,.24);
+    opacity: 0;
+    transform: scale(.98);
+    pointer-events: none;
+    animation: mxpNextPulse 3.8s ease-in-out infinite;
+  }
+  #submit-request.mxp-submit-pending::before {
+    content: "";
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    width: 12px;
+    height: 12px;
+    border: 2px solid rgba(255,255,255,.32);
+    border-top-color: #fff;
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translateY(-50%);
+    animation: mxpSpinner .7s linear infinite;
+  }
+  .mxp-success-mark { position: relative; isolation: isolate; }
+  .mxp-success-check {
+    position: absolute;
+    inset: 1px;
+    z-index: 2;
+    width: calc(100% - 2px);
+    height: calc(100% - 2px);
+    overflow: visible;
+    transform: scale(.15);
+    transform-origin: left center;
+    animation: mxpCheckDraw .48s var(--mxp-ease) both;
+  }
+  .mxp-success-ring {
+    position: absolute;
+    inset: -4px;
+    z-index: 0;
+    border: 2px solid rgba(20,151,91,.42);
+    border-radius: 50%;
+    opacity: 0;
+    transform: scale(.72);
+    animation: mxpSuccessRing .85s var(--mxp-ease) both;
+  }
+
+  /* Line-item insert only. Removal remains immediate so application actions are never delayed. */
+  #line-items-body > tr.mxp-line-in { animation: mxpLineIn .42s var(--mxp-ease) var(--mxp-row-delay, 0ms) both; }
+
+  /* Track search: button busy spinner + temporary, aria-hidden skeletons only when no real results exist. */
+  #track-search-submit.mxp-search-busy::before {
+    content: "";
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    width: 12px;
+    height: 12px;
+    box-sizing: border-box;
+    border: 2px solid rgba(255,255,255,.32);
+    border-top-color: #fff;
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translateY(-50%);
+    animation: mxpSpinner .7s linear infinite;
+  }
+  #track-initial-state.mxp-skeleton-host { position: relative; }
+  .mxp-skeleton-layer {
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    min-height: 140px;
+    border-radius: inherit;
+    background: #fff;
+  }
+  .mxp-skeleton-row {
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    height: 34px;
+    overflow: hidden;
+    border-radius: 7px;
+    background: #f2f4f6;
+  }
+  .mxp-skeleton-row:nth-child(1) { top: 10px; }
+  .mxp-skeleton-row:nth-child(2) { top: 52px; }
+  .mxp-skeleton-row:nth-child(3) { top: 94px; }
+  .mxp-skeleton-row::before {
+    content: "";
+    position: absolute;
+    left: 12px;
+    top: 12px;
+    width: 34%;
+    height: 8px;
+    border-radius: 4px;
+    background: #e1e5e9;
+  }
+  .mxp-skeleton-row::after {
+    content: "";
+    position: absolute;
+    inset: -20% auto -20% -45%;
+    width: 42%;
+    background: linear-gradient(100deg, transparent, rgba(255,255,255,.86), transparent);
+    transform: translate3d(-130%,0,0);
+  }
+  .mxp-skeleton-layer.mxp-loop-on .mxp-skeleton-row::after { animation: mxpSkeletonSweep 1.15s ease-in-out infinite; }
+  .mxp-skeleton-layer.mxp-loop-on .mxp-skeleton-row:nth-child(2)::after { animation-delay: 90ms; }
+  .mxp-skeleton-layer.mxp-loop-on .mxp-skeleton-row:nth-child(3)::after { animation-delay: 180ms; }
+
+  /* Track results reuse the existing table-row reveal. This only updates its stagger to the motion system. */
+  #view-track .track-request-table tbody.mx-anim > tr:nth-child(-n+8) { animation-delay: calc(var(--r, 0) * 70ms); }
+  #view-track .track-request-table tbody tr[data-track-row] td { position: relative; isolation: isolate; }
+  #view-track .track-request-table tbody tr[data-track-row] td::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: rgba(200,16,46,.055);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .2s var(--mxp-ease);
+  }
+  #view-track .track-request-table tbody tr[data-track-row]:hover td::after,
+  #view-track .track-request-table tbody tr.track-row-selected td::after { opacity: 1; }
+  #view-track .track-request-table tbody tr[data-track-row] td:first-child::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    z-index: 1;
+    background: var(--mxp-red);
+    opacity: .9;
+    transform: scaleY(0);
+    transform-origin: center;
+    transition: transform .2s var(--mxp-ease);
+    pointer-events: none;
+  }
+  #view-track .track-request-table tbody tr[data-track-row]:hover td:first-child::before,
+  #view-track .track-request-table tbody tr.track-row-selected td:first-child::before { transform: scaleY(1); }
+  #view-track .track-progress-step.active.mxp-loop-on > i { animation: mxpCurrentStep 2.2s ease-in-out infinite; transform-origin: center; }
+  #view-track .track-search-empty .track-empty-mark.mxp-loop-on { animation: mxpEmptyFloat 3.8s ease-in-out infinite; }
+  #track-result-count.mxp-count-pop { animation: mxpCountPop .26s var(--mxp-spring) both; }
+  #view-track .track-request-table .status-pill.mxp-status-flash { animation: mxpStatusFlash .48s var(--mxp-ease) both; }
+  #nav-request-count.mxp-badge-pop { animation: mxpBadgePop .42s var(--mxp-spring) both; }
+  .track-auto-badge { position: relative; }
+  .track-auto-badge::before {
+    content: "";
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    margin-right: 4px;
+    border-radius: 50%;
+    vertical-align: 1px;
+    background: #15945d;
+    opacity: .85;
+  }
+  .track-auto-badge.mxp-loop-on::before { animation: mxpAutoDot 2.2s ease-in-out infinite; }
+  .track-initial-icon.mxp-loop-on,
+  .track-progress-empty-icon.mxp-loop-on { animation: mxpEmptyFloat 3.8s ease-in-out infinite; }
+  #track-progress-body.mxp-progress-swap .track-progress-step,
+  #track-progress-body.mxp-progress-swap .track-progress-outcome { animation: mxpTimelineNode .42s var(--mxp-spring) both; }
+  #track-progress-body.mxp-progress-swap .track-progress-step:nth-child(2) { animation-delay: 80ms; }
+  #track-progress-body.mxp-progress-swap .track-progress-outcome { animation-delay: 160ms; }
+  #view-track .track-progress-timeline.mxp-timeline-draw::after {
+    content: "";
+    position: absolute;
+    left: 11px;
+    top: 17px;
+    bottom: 56px;
+    width: 2px;
+    z-index: 0;
+    pointer-events: none;
+    background: #0B7772;
+    transform: scaleY(0);
+    transform-origin: top center;
+    animation: mxpTimelineDraw .72s var(--mxp-ease) both;
+  }
+  #view-track .track-progress-outcome.created.mxp-created-glow { isolation: isolate; }
+  #view-track .track-progress-outcome.created.mxp-created-glow::after {
+    content: "";
+    position: absolute;
+    inset: -4px;
+    z-index: 0;
+    border: 1px solid rgba(21,148,93,.32);
+    border-radius: 9px;
+    opacity: 0;
+    transform: scale(.985);
+    pointer-events: none;
+    animation: mxpCreatedGlow 1.05s var(--mxp-ease) both;
+  }
+
+  /* Every toast gets an opacity-independent timer line that scales down. */
+  .toast { position: relative; }
+  .toast.mxp-toast-timer::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 2px;
+    border-radius: 0 0 6px 6px;
+    background: #0B7772;
+    opacity: .7;
+    transform: scaleX(1);
+    transform-origin: left center;
+    pointer-events: none;
+    animation: mxpToastTimer 4.4s linear both;
+  }
+
+  /* Shared primary controls only. A single pointermove rAF drives magnetic drift. */
+  .mxp-magnetic-target { transition: transform .2s var(--mxp-ease); }
+  .mxp-magnetic-target.mxp-magnetic-moving { transition: none !important; }
+
+  @keyframes mxpBreadcrumbIn { from { opacity: 0; transform: translate3d(0,7px,0); } to { opacity: 1; transform: translate3d(0,0,0); } }
+  @keyframes mxpViewIn { from { opacity: 0; transform: translate3d(0,12px,0); } to { opacity: 1; transform: translate3d(0,0,0); } }
+  @keyframes mxpViewOut { from { opacity: 1; transform: translate3d(0,0,0); } to { opacity: 0; transform: translate3d(-12px,0,0); } }
+  @keyframes mxpShineLoop { 0%,70%,100% { opacity: 0; transform: translate3d(-130%,0,0); } 76% { opacity: .9; } 88% { opacity: .65; transform: translate3d(130%,0,0); } }
+  @keyframes mxpShineSweep { 0% { opacity: 0; transform: translate3d(-130%,0,0); } 12% { opacity: .9; } 100% { opacity: 0; transform: translate3d(130%,0,0); } }
+  @keyframes mxpHeroSettle { 0% { opacity: .33; transform: scale(1.06); } 85% { opacity: .12; transform: scale(1); } 100% { opacity: 0; transform: scale(1); } }
+  @keyframes mxpBadgePop { 0% { opacity: .6; transform: scale(.82); } 72% { opacity: 1; transform: scale(1.08); } 100% { opacity: 1; transform: scale(1); } }
+  @keyframes mxpWaveDrift { from { transform: translate3d(-10px,0,0); } to { transform: translate3d(10px,0,0); } }
+  @keyframes mxpFooterIn { from { opacity: 0; transform: translate3d(0,12px,0); } to { opacity: 1; transform: translate3d(0,0,0); } }
+  @keyframes mxpStepStagger { from { opacity: 0; transform: translate3d(-12px,0,0); } to { opacity: 1; transform: translate3d(0,0,0); } }
+  @keyframes mxpSummaryRailIn { from { opacity: .5; transform: translate3d(18px,0,0); } to { opacity: 1; transform: translate3d(0,0,0); } }
+  @keyframes mxpSummaryTipIn { from { opacity: .25; transform: translate3d(0,8px,0); } to { opacity: 1; transform: translate3d(0,0,0); } }
+  @keyframes mxpStepForward { from { opacity: 0; transform: translate3d(18px,0,0); } to { opacity: 1; transform: translate3d(0,0,0); } }
+  @keyframes mxpStepBackward { from { opacity: 0; transform: translate3d(-18px,0,0); } to { opacity: 1; transform: translate3d(0,0,0); } }
+  @keyframes mxpFocusRing { 0% { opacity: 0; transform: scale(.99); } 100% { opacity: 1; transform: scale(1); } }
+  @keyframes mxpFieldShake { 0%,100% { transform: translate3d(0,0,0); } 25% { transform: translate3d(-4px,0,0); } 55% { transform: translate3d(4px,0,0); } 78% { transform: translate3d(-2px,0,0); } }
+  @keyframes mxpValidationFlash { 0% { opacity: 0; transform: scale(.99); } 18% { opacity: .85; } 100% { opacity: 0; transform: scale(1); } }
+  @keyframes mxpSummaryFlash { 0% { opacity: 0; transform: scale(.99); } 20% { opacity: .85; } 100% { opacity: 0; transform: scale(1); } }
+  @keyframes mxpSummaryValueIn { from { opacity: .55; transform: translate3d(0,7px,0); } to { opacity: 1; transform: translate3d(0,0,0); } }
+  @keyframes mxpSpinner { to { transform: translateY(-50%) rotate(360deg); } }
+  @keyframes mxpSavedPulse { 0% { transform: scale(1); } 55% { transform: scale(1.035); } 100% { transform: scale(1); } }
+  @keyframes mxpNextPulse { 0%,100% { opacity: 0; transform: scale(.98); } 50% { opacity: .26; transform: scale(1); } }
+  @keyframes mxpCheckDraw { from { opacity: .25; transform: scale(.15); } to { opacity: .96; transform: scale(1); } }
+  @keyframes mxpSuccessRing { 0% { opacity: .65; transform: scale(.72); } 100% { opacity: 0; transform: scale(1.3); } }
+  @keyframes mxpLineIn { from { opacity: 0; transform: translate3d(0,12px,0); } to { opacity: 1; transform: translate3d(0,0,0); } }
+  @keyframes mxpSkeletonSweep { from { transform: translate3d(-130%,0,0); } to { transform: translate3d(330%,0,0); } }
+  @keyframes mxpCountPop { 0% { opacity: .65; transform: translate3d(0,5px,0) scale(.97); } 70% { opacity: 1; transform: translate3d(0,-1px,0) scale(1.03); } 100% { opacity: 1; transform: translate3d(0,0,0) scale(1); } }
+  @keyframes mxpAutoDot { 0%,100% { opacity: .55; transform: scale(.82); } 50% { opacity: 1; transform: scale(1.12); } }
+  @keyframes mxpCurrentStep { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: .86; transform: scale(1.045); } }
+  @keyframes mxpStatusFlash { 0% { opacity: .55; transform: scale(.97); } 65% { opacity: 1; transform: scale(1.035); } 100% { opacity: 1; transform: scale(1); } }
+  @keyframes mxpEmptyFloat { 0%,100% { transform: translate3d(0,0,0); } 50% { transform: translate3d(0,-4px,0); } }
+  @keyframes mxpTimelineNode { from { opacity: .45; transform: translate3d(0,8px,0) scale(.96); } to { opacity: 1; transform: translate3d(0,0,0) scale(1); } }
+  @keyframes mxpTimelineDraw { to { transform: scaleY(1); } }
+  @keyframes mxpCreatedGlow { 0% { opacity: .7; transform: scale(.985); } 100% { opacity: 0; transform: scale(1.025); } }
+  @keyframes mxpToastTimer { to { transform: scaleX(0); } }
+  @keyframes mxpFlowTravel {
+    from { transform: translate3d(var(--mxp-flow-start-x, 0),var(--mxp-flow-start-y, 0),0) scale(.7); }
+    to { transform: translate3d(var(--mxp-flow-end-x, 0),var(--mxp-flow-end-y, 0),0) scale(.7); }
+  }
+}
+
+
+
+/* Motion-lite: preserve the UI and finite feedback, disable all infinite / expensive effects. */
+html.mx-lite .mxp-nav-pill,
+html.mxp-local-lite .mxp-nav-pill,
+html.mx-lite .mxp-card-glow,
+html.mxp-local-lite .mxp-card-glow,
+html.mx-lite .mxp-workflow-dot,
+html.mxp-local-lite .mxp-workflow-dot,
+html.mx-lite .mxp-hero-image-layer,
+html.mxp-local-lite .mxp-hero-image-layer { display: none !important; }
+html.mx-lite .mxp-cta-shine::after,
+html.mxp-local-lite .mxp-cta-shine::after,
+html.mx-lite #wizard-next::before,
+html.mxp-local-lite #wizard-next::before,
+html.mx-lite .mxp-skeleton-row::after,
+html.mxp-local-lite .mxp-skeleton-row::after,
+html.mx-lite .track-auto-badge::before,
+html.mxp-local-lite .track-auto-badge::before { animation: none !important; opacity: 0 !important; }
+html.mx-lite .mxp-loop-on,
+html.mx-lite .mxp-loop-on::before,
+html.mx-lite .mxp-loop-on::after,
+html.mxp-local-lite .mxp-loop-on,
+html.mxp-local-lite .mxp-loop-on::before,
+html.mxp-local-lite .mxp-loop-on::after { animation: none !important; }
+html.mx-lite #view-home .home-inspiration-ribbon.mxp-loop-on,
+html.mxp-local-lite #view-home .home-inspiration-ribbon.mxp-loop-on { animation: none !important; }
+html.mx-lite .mxp-magnetic-target,
+html.mxp-local-lite .mxp-magnetic-target { transform: none !important; transition: none !important; }
+html.mx-lite .mxp-magnetic-moving,
+html.mxp-local-lite .mxp-magnetic-moving { transform: none !important; }
+html.mx-lite #view-home .home-action-card:hover .mxp-card-glow,
+html.mxp-local-lite #view-home .home-action-card:hover .mxp-card-glow { opacity: 0 !important; }
+html.mx-lite .mxp-wizard-progress-fill,
+html.mxp-local-lite .mxp-wizard-progress-fill { transition: none !important; }
+html.mx-lite .mxp-skeleton-layer,
+html.mxp-local-lite .mxp-skeleton-layer { display: none !important; }
+html.mx-lite .mxp-nav-pill { display: none !important; }
+html.mx-lite .mxp-success-ring,
+html.mxp-local-lite .mxp-success-ring { display: none !important; }
+html.mx-lite .mxp-toast-timer::after,
+html.mxp-local-lite .mxp-toast-timer::after { animation: none !important; opacity: 0 !important; }
+html.mxp-tab-hidden .mxp-loop-on,
+html.mxp-tab-hidden .mxp-loop-on::before,
+html.mxp-tab-hidden .mxp-loop-on::after { animation-play-state: paused !important; }
+html.mxp-tab-hidden .mxp-skeleton-row::after,
+html.mxp-tab-hidden .toast.mxp-toast-timer::after { animation-play-state: paused !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  .mxp-nav-pill,
+  .mxp-header-shadow,
+  .mxp-hero-image-layer,
+  .mxp-workflow-dot,
+  .mxp-card-glow,
+  .mxp-skeleton-layer,
+  .mxp-skeleton-row,
+  .mxp-summary-flash-overlay,
+  .mxp-validation-indicator,
+  .mxp-wizard-progress-track,
+  .mxp-wizard-progress-fill,
+  .mxp-success-ring,
+  .mxp-success-check { display: none !important; }
+  #breadcrumb-current.mxp-breadcrumb-change,
+  #view-home.mxp-view-in,
+  #view-create.mxp-view-in,
+  #view-track.mxp-view-in,
+  .main-footer-quote.mxp-footer-entered,
+  .mxp-stepper-entrance .wizard-step-button,
+  #view-create .form-summary-rail.mxp-summary-rail-in,
+  #view-create .summary-help.mxp-summary-tip-in,
+  .wizard-panel.active.mxp-step-forward,
+  .wizard-panel.active.mxp-step-backward,
+  .mxp-validation-shake,
+  .mxp-summary-value-in,
+  #save-draft.mxp-save-success,
+  #line-items-body > tr.mxp-line-in,
+  #track-result-count.mxp-count-pop,
+  #nav-request-count.mxp-badge-pop,
+  #view-track .track-progress-step.active.mxp-loop-on > i,
+  #track-progress-body.mxp-progress-swap,
+  #track-progress-body.mxp-progress-swap .track-progress-step,
+  #track-progress-body.mxp-progress-swap .track-progress-outcome { animation: none !important; }
+  .top-create::after,
+  #view-home .home-primary-action::after,
+  #wizard-next::after,
+  #submit-request::after,
+  #track-search-submit::after,
+  #save-draft.mxp-save-pending::after,
+  #submit-request.mxp-submit-pending::before,
+  #track-search-submit.mxp-search-busy::before { display: none !important; }
+  .mxp-magnetic-target,
+  .track-progress-step.active > i,
+  .home-action-card,
+  .home-action-card .home-action-cta b,
+  #view-home .home-trust-row > span i,
+  .wizard-stepper-buttons .wizard-step-button,
+  #view-create .field:focus-within { transition: none !important; }
+  #view-create .field:focus-within::after { display: none !important; animation: none !important; }
+}

@@ -1,0 +1,103 @@
+/* Focused topic-icon layer. No navigation, profile, form control or workflow layout is changed. */
+.po-topic-svg{display:block;width:20px;height:20px;flex:0 0 auto;overflow:visible}
+.topic-section-icon,.topic-heading-icon{display:inline-flex;align-items:center;justify-content:center;flex:0 0 38px;width:38px;height:38px;border-radius:12px;background:linear-gradient(140deg,#fff0f2,#ffe1e7);color:#c8102e;box-shadow:inset 0 0 0 1px rgba(200,16,46,.045)}
+.topic-section-icon{margin-right:0}
+.form-section-head .topic-section-icon{align-self:center}
+.form-section-head .topic-section-icon .po-topic-svg{width:19px;height:19px}
+.panel-heading{gap:12px}
+.panel-heading .topic-heading-icon{width:36px;height:36px;flex-basis:36px;border-radius:11px}
+.panel-heading .topic-heading-icon .po-topic-svg{width:18px;height:18px}
+.panel-heading .po-icon-heading-copy{flex:1;min-width:0}
+.request-detail-card-head .topic-heading-icon{width:36px;height:36px;flex-basis:36px;border-radius:11px}
+.request-detail-card-head .po-icon-heading-copy{flex:1;min-width:0}
+.support-documents-head{gap:12px}
+.support-documents-head .topic-section-icon{width:36px;height:36px;flex-basis:36px}
+.support-documents-head .po-icon-heading-copy{flex:1;min-width:0}
+.metric-icon .po-topic-svg,.quick-icon .po-topic-svg,.report-icon .po-topic-svg,.summary-rail-icon .po-topic-svg,.track-summary-icon .po-topic-svg,.track-register-icon .po-topic-svg,.track-initial-icon .po-topic-svg,.track-page-icon .po-topic-svg,.track-discovery-mark .po-topic-svg,.email-preview-icon .po-topic-svg,.email-side-icon .po-topic-svg,.notice-icon .po-topic-svg,.help-icon .po-topic-svg,.ref-icon .po-topic-svg,.empty-illustration .po-topic-svg,.detail-empty-icon .po-topic-svg,.timeline-empty-icon .po-topic-svg{width:1em;height:1em;max-width:23px;max-height:23px}
+.metric-icon .po-topic-svg{width:20px;height:20px}
+.quick-icon .po-topic-svg{width:21px;height:21px}
+.report-icon .po-topic-svg{width:21px;height:21px}
+.summary-rail-icon .po-topic-svg,.track-register-icon .po-topic-svg,.track-initial-icon .po-topic-svg{width:22px;height:22px}
+.notice-icon .po-topic-svg{width:19px;height:19px}
+.help-icon .po-topic-svg{width:16px;height:16px}
+.ref-icon .po-topic-svg{width:18px;height:18px}
+.topic-heading-icon,.topic-section-icon,.metric-icon,.quick-icon,.report-icon,.summary-rail-icon,.track-summary-icon,.track-register-icon,.track-initial-icon,.track-page-icon,.track-discovery-mark,.email-preview-icon,.email-side-icon,.notice-icon,.help-icon,.ref-icon,.empty-illustration,.detail-empty-icon,.timeline-empty-icon{line-height:1}
+@media(max-width:560px){.topic-section-icon{width:32px;height:32px;flex-basis:32px;border-radius:10px}.form-section-head .topic-section-icon .po-topic-svg{width:17px;height:17px}.panel-heading .topic-heading-icon{width:32px;height:32px;flex-basis:32px}}
+
+/* v2.6.2: small leading icons in every PO wizard field. Scoped to the request wizard. */
+.wizard-panel .field.po-field-icon-host{position:relative}
+.wizard-panel .field-leading-icon{position:absolute;left:10px;top:31px;z-index:2;display:inline-flex;align-items:center;justify-content:center;width:15px;height:16px;color:#c8102e;pointer-events:none;line-height:1}
+.wizard-panel .field-leading-icon .po-topic-svg{width:14px;height:14px;stroke-width:1.9}
+.wizard-panel .field.po-field-icon-host>input:not([type="file"]),
+.wizard-panel .field.po-field-icon-host>select,
+.wizard-panel .field.po-field-icon-host>textarea{padding-left:32px!important}
+.wizard-panel .field.po-field-icon-host>.searchable-select>.searchable-control{padding-left:32px!important}
+.wizard-panel .choice-topic-icon{display:inline-flex;align-items:center;justify-content:center;flex:0 0 25px;width:25px;height:25px;margin-top:1px;border-radius:7px;background:#fff0f2;color:#c8102e}
+.wizard-panel .choice-topic-icon .po-topic-svg{width:15px;height:15px}
+
+/* One-page review layout: three information cards, delivery + line items, then documents. */
+.wizard-review-content .review-cards-grid{grid-template-columns:repeat(3,minmax(0,1fr));align-items:stretch}
+.wizard-review-content .review-line-summary{grid-column:span 2}
+.wizard-review-content .review-summary-block dl{grid-template-columns:minmax(88px,.72fr) minmax(0,1.28fr);padding:11px 12px;gap:9px 10px}
+.wizard-review-content .review-summary-block dt{display:flex;align-items:flex-start;gap:5px;line-height:1.45}
+.wizard-review-content .review-summary-block dd{line-height:1.45}
+.review-card-heading-icon{display:inline-flex;align-items:center;justify-content:center;flex:0 0 27px;width:27px;height:27px;border-radius:8px;background:#fff0f2;color:#c8102e}
+.review-card-heading-icon .po-topic-svg{width:15px;height:15px}
+.review-block-head>strong{flex:1;min-width:0}
+.review-card-meta{font-size:8.5px;color:#8a969d;white-space:nowrap}
+.po-review-field-icon{display:inline-flex;align-items:center;justify-content:center;flex:0 0 13px;width:13px;height:13px;margin-top:1px;color:#c8102e}
+.po-review-field-icon .po-topic-svg{width:12px;height:12px;stroke-width:1.9}
+.wizard-review-content .review-line-table-wrap{max-width:100%;overflow:auto}
+.wizard-review-content .review-line-table{min-width:1000px}
+.wizard-review-content .review-line-table th{white-space:nowrap}
+.po-column-icon{display:inline-flex;align-items:center;justify-content:center;vertical-align:-2px;margin-right:4px;color:currentColor;opacity:.95}
+.po-column-icon .po-topic-svg{width:12px;height:12px;stroke-width:1.9}
+.review-support-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.review-support-title{display:grid;grid-template-columns:27px minmax(0,1fr);align-items:center;gap:2px 9px;min-width:0}
+.review-support-title .review-card-heading-icon{grid-column:1;grid-row:1 / span 2}
+.review-support-title strong{grid-column:2}
+.review-support-title>span:not(.review-card-heading-icon){grid-column:2}
+.review-support-head>button{border:0;background:transparent;color:#c8102e;font-size:10px;font-weight:800;padding:6px 8px}
+.review-support-files .review-support-head{margin-bottom:10px}
+.review-support-files .review-support-head strong{display:block}
+.review-support-files .review-support-title>span{display:block;font-size:9px;color:#89999e}
+
+@media(max-width:1100px){
+  .wizard-review-content .review-cards-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .wizard-review-content .review-line-summary{grid-column:1 / -1}
+}
+@media(max-width:640px){
+  .wizard-panel .field-leading-icon{left:9px;top:31px}
+  .wizard-review-content .review-cards-grid{grid-template-columns:1fr}
+  .wizard-review-content .review-line-summary{grid-column:1 / -1}
+  .wizard-review-content .review-summary-block dl{grid-template-columns:minmax(100px,.72fr) minmax(0,1.28fr)}
+  .review-support-files{padding:12px}
+  .review-support-head{align-items:flex-start}
+}
+.wizard-review-content .review-line-table{min-width:850px}
+.wizard-review-content .review-coding-cell{min-width:165px;line-height:1.45;overflow-wrap:anywhere}
+.wizard-review-content .review-coding-cell>span{display:block;margin:1px 0}
+.wizard-review-content .review-summary-block .review-line-table td{vertical-align:top}
+
+/* v2.6.3 alignment refinement: anchor each small field icon to the actual control,
+   so it stays vertically centered when labels wrap or the viewport changes. */
+.wizard-panel .field.po-field-icon-host{position:relative;min-width:0}
+.wizard-panel .field-leading-icon{position:absolute;left:10px;top:0;z-index:2;display:inline-flex;align-items:center;justify-content:center;width:15px;height:16px;color:#c8102e;pointer-events:none;line-height:1;transform:none}
+.wizard-panel .field-leading-icon .po-topic-svg{display:block;width:13px;height:13px;stroke-width:1.9}
+.wizard-panel .field.po-field-icon-host>input:not([type="file"]),
+.wizard-panel .field.po-field-icon-host>select,
+.wizard-panel .field.po-field-icon-host>textarea,
+.wizard-panel .field.po-field-icon-host>.searchable-select>.searchable-control{padding-left:32px!important}
+/* Keep the line number visible at the far left, including when the table scrolls on mobile. */
+.line-table .col-line-number,.line-table .line-number-cell{width:42px!important;min-width:42px!important;max-width:42px!important;text-align:center!important;padding-left:5px!important;padding-right:5px!important}
+.line-table .col-line-number{position:sticky!important;left:0;z-index:4!important;background:#b70f2b!important;color:#fff!important}
+.line-table .line-number-cell{position:sticky;left:0;z-index:2;background:#fff!important;color:#233b52;font-weight:800;font-variant-numeric:tabular-nums;border-right:1px solid #e4e9f0!important}
+.line-table tbody tr:nth-child(even) .line-number-cell{background:#fcfdff!important}
+.line-table tbody tr:hover .line-number-cell{background:#fff6f7!important}
+@media(max-width:640px){
+  .wizard-panel .field-leading-icon{left:9px}
+  .line-table .col-line-number,.line-table .line-number-cell{width:36px!important;min-width:36px!important;max-width:36px!important}
+}
+/* Review's coding cell should read as one resolved account code, not duplicate mappings. */
+.wizard-review-content .review-coding-cell{min-width:220px;line-height:1.5;overflow-wrap:anywhere;white-space:normal}
+.wizard-review-content .review-coding-cell>span{display:block;margin:0;color:#263f56;font-weight:600}

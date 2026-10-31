@@ -1,0 +1,1659 @@
+{
+  "source": "Company Code List.xlsx",
+  "sourceSheet": "Company Code",
+  "count": 236,
+  "companyCodes": [
+    {
+      "companyCode": "0101",
+      "region": "NA",
+      "description": "Coca-Cola North America",
+      "country": "United States",
+      "ou": "North America"
+    },
+    {
+      "companyCode": "0103",
+      "region": "NA",
+      "description": "INACT-Bottling Investment",
+      "country": "United States",
+      "ou": "North America"
+    },
+    {
+      "companyCode": "0128",
+      "region": "NA",
+      "description": "Coca-Cola Holdings India",
+      "country": "United States",
+      "ou": "North America"
+    },
+    {
+      "companyCode": "0129",
+      "region": "APAC",
+      "description": "CC India Inc- India Branch",
+      "country": "India",
+      "ou": "INSWA"
+    },
+    {
+      "companyCode": "0141",
+      "region": "NA",
+      "description": "CC Overseas Parent Ltd",
+      "country": "United States",
+      "ou": "North America"
+    },
+    {
+      "companyCode": "0142",
+      "region": "NA",
+      "description": "CC Holdings (Overseas) Ltd",
+      "country": "United States",
+      "ou": "North America"
+    },
+    {
+      "companyCode": "0203",
+      "region": "NA",
+      "description": "ACCBC Holding Company",
+      "country": "United States",
+      "ou": "North America"
+    },
+    {
+      "companyCode": "0300",
+      "region": "NA",
+      "description": "The Coca-Cola Foundation",
+      "country": "United States",
+      "ou": "North America"
+    },
+    {
+      "companyCode": "0500",
+      "region": "LATAM",
+      "description": "JDA Fideicomiso",
+      "country": "Argentina",
+      "ou": "Latin America"
+    },
+    {
+      "companyCode": "0600",
+      "region": "LATAM",
+      "description": "Fundación Coca-Cola",
+      "country": "Ecuador",
+      "ou": "Latin America"
+    },
+    {
+      "companyCode": "0670",
+      "region": "NA",
+      "description": "The Coca-Cola Trading Co",
+      "country": "United States",
+      "ou": "NA - Corporate"
+    },
+    {
+      "companyCode": "0673",
+      "region": "APAC",
+      "description": "Coca-Cola Southeast Asia",
+      "country": "Vietnam",
+      "ou": "ASP"
+    },
+    {
+      "companyCode": "0674",
+      "region": "NA",
+      "description": "CC South Asia Holdings",
+      "country": "United States",
+      "ou": "North America"
+    },
+    {
+      "companyCode": "0675",
+      "region": "APAC",
+      "description": "Coca-Cola (Thailand) Ltd",
+      "country": "Thailand",
+      "ou": "ASP"
+    },
+    {
+      "companyCode": "0708",
+      "region": "APAC",
+      "description": "Coca-Cola India Foundation",
+      "country": "India",
+      "ou": "INSWA"
+    },
+    {
+      "companyCode": "0801",
+      "region": "NA",
+      "description": "The Coca-Cola Company",
+      "country": "United States",
+      "ou": "NA - Corporate"
+    },
+    {
+      "companyCode": "0803",
+      "region": "NA",
+      "description": "Carolina Coca-Cola Bottlg",
+      "country": "United States",
+      "ou": "North America"
+    },
+    {
+      "companyCode": "0900",
+      "region": "NA",
+      "description": "CTI Holdings",
+      "country": "United States",
+      "ou": "North America"
+    },
+    {
+      "companyCode": "0904",
+      "region": "NA",
+      "description": "55th & 5th Avenue Corp",
+      "country": "United States",
+      "ou": "North America"
+    },
+    {
+      "companyCode": "0911",
+      "region": "NA",
+      "description": "Coca-Cola Financial Corp",
+      "country": "United States",
+      "ou": "North America"
+    },
+    {
+      "companyCode": "0913",
+      "region": "NA",
+      "description": "Coca-Cola Oasis",
+      "country": "United States",
+      "ou": "NA - Corporate"
+    },
+    {
+      "companyCode": "1000",
+      "region": "NA",
+      "description": "The Coca-Cola Export Corp",
+      "country": "United States",
+      "ou": "NA - Corporate"
+    },
+    {
+      "companyCode": "1005",
+      "region": "EMEA",
+      "description": "TCCEC - Bahrain Branch",
+      "country": "Bahrain",
+      "ou": "Eurasia & Middle East"
+    },
+    {
+      "companyCode": "1006",
+      "region": "EMEA",
+      "description": "Coca-Cola Nordic Services",
+      "country": "Denmark",
+      "ou": "Europe"
+    },
+    {
+      "companyCode": "1013",
+      "region": "EMEA",
+      "description": "CC Equatorial Africa Ltd",
+      "country": "Ghana",
+      "ou": "Africa"
+    },
+    {
+      "companyCode": "1017",
+      "region": "LATAM",
+      "description": "INACT-Peru Beverage Limit",
+      "country": "Peru",
+      "ou": "Latin America"
+    },
+    {
+      "companyCode": "1021",
+      "region": "EMEA",
+      "description": "TCCEC - Algeria Rep Offic",
+      "country": "Algeria",
+      "ou": "Africa"
+    },
+    {
+      "companyCode": "1022",
+      "region": "LATAM",
+      "description": "Beverage Brands SRL",
+      "country": "Peru",
+      "ou": "Latin America"
+    },
+    {
+      "companyCode": "1023",
+      "region": "LATAM",
+      "description": "Corporación Inca Kola Per",
+      "country": "Peru",
+      "ou": "Latin America"
+    },
+    {
+      "companyCode": "1026",
+      "region": "EMEA",
+      "description": "DP Beverages Unlimited Co",
+      "country": "Ireland",
+      "ou": "CPS"
+    },
+    {
+      "companyCode": "1030",
+      "region": "NA",
+      "description": "CC Holdings West Japan",
+      "country": "United States",
+      "ou": "North America"
+    },
+    {
+      "companyCode": "1033",
+      "region": "NA",
+      "description": "Soft Drinks International",
+      "country": "United States",
+      "ou": "North America"
+    },
+    {
+      "companyCode": "1040",
+      "region": "NA",
+      "description": "Minute Maid International",
+      "country": "United States",
+      "ou": "North America"
+    },
+    {
+      "companyCode": "1046",
+      "region": "APAC",
+      "description": "CC Singapore Holdings Pte",
+      "country": "Singapore",
+      "ou": "ASP"
+    },
+    {
+      "companyCode": "1056",
+      "region": "EMEA",
+      "description": "Varoise de Concentres SAS",
+      "country": "France",
+      "ou": "CPS"
+    },
+    {
+      "companyCode": "1067",
+      "region": "NA",
+      "description": "International Auditors In",
+      "country": "United States",
+      "ou": "North America"
+    },
+    {
+      "companyCode": "1072",
+      "region": "EMEA",
+      "description": "Coca-Cola Poland Services",
+      "country": "Poland",
+      "ou": "Europe"
+    },
+    {
+      "companyCode": "1078",
+      "region": "EMEA",
+      "description": "Coca-Cola Ukraine Ltd",
+      "country": "Ukraine",
+      "ou": "Europe"
+    },
+    {
+      "companyCode": "1080",
+      "region": "EMEA",
+      "description": "RPSI - Israel Branch",
+      "country": "Israel",
+      "ou": "Eurasia & Middle East"
+    },
+    {
+      "companyCode": "1081",
+      "region": "APAC",
+      "description": "TCCEC -Philippines Branch",
+      "country": "Philippines",
+      "ou": "ASP"
+    },
+    {
+      "companyCode": "1084",
+      "region": "LATAM",
+      "description": "Coca-Cola Industrias Ltda",
+      "country": "Costa Rica",
+      "ou": "Latin America"
+    },
+    {
+      "companyCode": "1102",
+      "region": "NA",
+      "description": "CCHBC Grouping Inc",
+      "country": "United States",
+      "ou": "North America"
+    },
+    {
+      "companyCode": "1104",
+      "region": "EMEA",
+      "description": "TCCEC - Morocco Branch",
+      "country": "Morocco",
+      "ou": "Africa"
+    },
+    {
+      "companyCode": "1105",
+      "region": "NA",
+      "description": "INACT-Odwalla, Inc",
+      "country": "United States",
+      "ou": "North America"
+    },
+    {
+      "companyCode": "1107",
+      "region": "EMEA",
+      "description": "TCCEC - Turkey Branch",
+      "country": "Turkey",
+      "ou": "Eurasia & Middle East"
+    },
+    {
+      "companyCode": "1128",
+      "region": "LATAM",
+      "description": "Comp  Servicios Nicaragua",
+      "country": "Nicaragua",
+      "ou": "Latin America"
+    },
+    {
+      "companyCode": "1129",
+      "region": "LATAM",
+      "description": "Comp Servicios El Salvado",
+      "country": "El Salvador",
+      "ou": "Latin America"
+    },
+    {
+      "companyCode": "1130",
+      "region": "LATAM",
+      "description": "Caribbean Services Trinid",
+      "country": "Trinidad And Tobago",
+      "ou": "Latin America"
+    },
+    {
+      "companyCode": "1144",
+      "region": "EMEA",
+      "description": "Valser Trading GmbH",
+      "country": "Switzerland",
+      "ou": "Europe"
+    },
+    {
+      "companyCode": "1153",
+      "region": "NA",
+      "description": "Atlanta Beverage Base",
+      "country": "United States",
+      "ou": "CPS"
+    },
+    {
+      "companyCode": "1154",
+      "region": "EMEA",
+      "description": "TCCEC - Pakistan Branch",
+      "country": "Pakistan",
+      "ou": "Eurasia & Middle East"
+    },
+    {
+      "companyCode": "1156",
+      "region": "APAC",
+      "description": "TCCEC - India Branch",
+      "country": "India",
+      "ou": "INSWA"
+    },
+    {
+      "companyCode": "1157",
+      "region": "APAC",
+      "description": "CC S Asia (India) Holding",
+      "country": "India",
+      "ou": "INSWA"
+    },
+    {
+      "companyCode": "1158",
+      "region": "APAC",
+      "description": "Cola-Cola India Private L",
+      "country": "India",
+      "ou": "INSWA"
+    },
+    {
+      "companyCode": "1160",
+      "region": "APAC",
+      "description": "Bharat CC Overseas Holdin",
+      "country": "Singapore",
+      "ou": "ASP"
+    },
+    {
+      "companyCode": "1161",
+      "region": "APAC",
+      "description": "Hindustan CC Overseas Hol",
+      "country": "Singapore",
+      "ou": "ASP"
+    },
+    {
+      "companyCode": "1164",
+      "region": "APAC",
+      "description": "Branch - CC SE Asia",
+      "country": "Vietnam",
+      "ou": "ASP"
+    },
+    {
+      "companyCode": "1168",
+      "region": "NA",
+      "description": "CRI Pacific Holdings II",
+      "country": "United States",
+      "ou": "North America"
+    },
+    {
+      "companyCode": "1169",
+      "region": "LATAM",
+      "description": "Caribbean Serv Co Jamaica",
+      "country": "Jamaica",
+      "ou": "Latin America"
+    },
+    {
+      "companyCode": "1178",
+      "region": "NA",
+      "description": "INACT-Bev Institute for H",
+      "country": "United States",
+      "ou": "North America"
+    },
+    {
+      "companyCode": "1180",
+      "region": "LATAM",
+      "description": "FTZ Coca-Cola Service",
+      "country": "Costa Rica",
+      "ou": "Latin America"
+    },
+    {
+      "companyCode": "1181",
+      "region": "LATAM",
+      "description": "FTZ Coca-Cola Park Admin",
+      "country": "Costa Rica",
+      "ou": "Latin America"
+    },
+    {
+      "companyCode": "1184",
+      "region": "NA",
+      "description": "Coca-Cola Properties LLC",
+      "country": "United States",
+      "ou": "NA - Corporate"
+    },
+    {
+      "companyCode": "1185",
+      "region": "EMEA",
+      "description": "Barlan B-H doo",
+      "country": "Bosnia And Herzegovina",
+      "ou": "Europe"
+    },
+    {
+      "companyCode": "1188",
+      "region": "EMEA",
+      "description": "Barlan S&M doo",
+      "country": "Serbia",
+      "ou": "Europe"
+    },
+    {
+      "companyCode": "1189",
+      "region": "EMEA",
+      "description": "Valaqua (Pty) Ltd",
+      "country": "South Africa",
+      "ou": "Africa"
+    },
+    {
+      "companyCode": "1190",
+      "region": "EMEA",
+      "description": "European Refreshments Unl",
+      "country": "Ireland",
+      "ou": "CPS"
+    },
+    {
+      "companyCode": "1192",
+      "region": "EMEA",
+      "description": "INACT-Refreshment Serv",
+      "country": "France",
+      "ou": "Europe"
+    },
+    {
+      "companyCode": "1193",
+      "region": "NA",
+      "description": "INACT-CCDA Water LLC",
+      "country": "United States",
+      "ou": "North America"
+    },
+    {
+      "companyCode": "1197",
+      "region": "EMEA",
+      "description": "INACT-CC Icelandic Serv",
+      "country": "Iceland",
+      "ou": "Europe"
+    },
+    {
+      "companyCode": "1200",
+      "region": "EMEA",
+      "description": "European Refreshments Unl",
+      "country": "Ireland",
+      "ou": "Europe"
+    },
+    {
+      "companyCode": "1202",
+      "region": "LATAM",
+      "description": "TCCEC - Mexico Branch",
+      "country": "Mexico",
+      "ou": "Latin America"
+    },
+    {
+      "companyCode": "1203",
+      "region": "NA",
+      "description": "Red Re Captive Insurance",
+      "country": "United States",
+      "ou": "North America"
+    },
+    {
+      "companyCode": "1204",
+      "region": "LATAM",
+      "description": "TCCEC - Panama Branch",
+      "country": "Panama",
+      "ou": "Latin America"
+    },
+    {
+      "companyCode": "1208",
+      "region": "EMEA",
+      "description": "Apollinaris Brands GmbH",
+      "country": "Germany",
+      "ou": "Europe"
+    },
+    {
+      "companyCode": "1249",
+      "region": "EMEA",
+      "description": "Beverage Services Tanzani",
+      "country": "Tanzania",
+      "ou": "Africa"
+    },
+    {
+      "companyCode": "1251",
+      "region": "APAC",
+      "description": "CC Beverages - Shanghai",
+      "country": "China",
+      "ou": "GCM"
+    },
+    {
+      "companyCode": "1252",
+      "region": "APAC",
+      "description": "CCSAI-Cambodia Rep Office",
+      "country": "Cambodia",
+      "ou": "ASP"
+    },
+    {
+      "companyCode": "1254",
+      "region": "NA",
+      "description": "INACT-Fuze Beverage, LLC",
+      "country": "United States",
+      "ou": "North America"
+    },
+    {
+      "companyCode": "1261",
+      "region": "NA",
+      "description": "INACT Energy Brands, Inc.",
+      "country": "United States",
+      "ou": "North America"
+    },
+    {
+      "companyCode": "1301",
+      "region": "LATAM",
+      "description": "Serv y Prod p/Beb Refr",
+      "country": "Argentina",
+      "ou": "Latin America"
+    },
+    {
+      "companyCode": "1313",
+      "region": "EMEA",
+      "description": "Römerquelle Trading GmbH",
+      "country": "Austria",
+      "ou": "Europe"
+    },
+    {
+      "companyCode": "1326",
+      "region": "LATAM",
+      "description": "JDV Markco SAPI de CV",
+      "country": "Mexico",
+      "ou": "Latin America"
+    },
+    {
+      "companyCode": "1328",
+      "region": "EMEA",
+      "description": "Refresh Products Finland",
+      "country": "Finland",
+      "ou": "Europe"
+    },
+    {
+      "companyCode": "1329",
+      "region": "EMEA",
+      "description": "Refresh Products Denmark",
+      "country": "Denmark",
+      "ou": "Europe"
+    },
+    {
+      "companyCode": "1332",
+      "region": "EMEA",
+      "description": "CB Cyprus Juice Trading",
+      "country": "Cyprus",
+      "ou": "Europe"
+    },
+    {
+      "companyCode": "1334",
+      "region": "NA",
+      "description": "neXstep Beverages LLC",
+      "country": "United States",
+      "ou": "North America"
+    },
+    {
+      "companyCode": "1336",
+      "region": "EMEA",
+      "description": "Waters & Robson Holding",
+      "country": "United Kingdom",
+      "ou": "Europe"
+    },
+    {
+      "companyCode": "1337",
+      "region": "EMEA",
+      "description": "Waters & Robson Limited",
+      "country": "United Kingdom",
+      "ou": "Europe"
+    },
+    {
+      "companyCode": "1344",
+      "region": "EMEA",
+      "description": "Coca-Cola Allied Beverage",
+      "country": "South Africa",
+      "ou": "Africa"
+    },
+    {
+      "companyCode": "1345",
+      "region": "LATAM",
+      "description": "NUEVAS BEBIDAS COLOMBIA",
+      "country": "Colombia",
+      "ou": "Latin America"
+    },
+    {
+      "companyCode": "1357",
+      "region": "LATAM",
+      "description": "New Beverages Ecuador",
+      "country": "Ecuador",
+      "ou": "Latin America"
+    },
+    {
+      "companyCode": "1358",
+      "region": "APAC",
+      "description": "Pacific Refreshments Pte",
+      "country": "Singapore",
+      "ou": "ASP"
+    },
+    {
+      "companyCode": "1362",
+      "region": "EMEA",
+      "description": "Coca-Cola Svc Angola Ltda",
+      "country": "Angola",
+      "ou": "Africa"
+    },
+    {
+      "companyCode": "1363",
+      "region": "EMEA",
+      "description": "CC Indian Ocean Islands",
+      "country": "Mauritius",
+      "ou": "Africa"
+    },
+    {
+      "companyCode": "1365",
+      "region": "APAC",
+      "description": "CC Bangladesh Holdings",
+      "country": "Singapore",
+      "ou": "ASP"
+    },
+    {
+      "companyCode": "1366",
+      "region": "APAC",
+      "description": "CC SE Asia Services Co Lt",
+      "country": "Thailand",
+      "ou": "ASP"
+    },
+    {
+      "companyCode": "1373",
+      "region": "LATAM",
+      "description": "Promotora Marcas Nacional",
+      "country": "Mexico",
+      "ou": "Latin America"
+    },
+    {
+      "companyCode": "1383",
+      "region": "EMEA",
+      "description": "CC Central Africa Pvt Ltd",
+      "country": "Zimbabwe",
+      "ou": "Africa"
+    },
+    {
+      "companyCode": "1386",
+      "region": "APAC",
+      "description": "CCCL - Taiwan Branch",
+      "country": "Taiwan",
+      "ou": "GCM"
+    },
+    {
+      "companyCode": "1394",
+      "region": "APAC",
+      "description": "CC Papua New Guinea Ltd",
+      "country": "Papua New Guinea",
+      "ou": "ASP"
+    },
+    {
+      "companyCode": "1398",
+      "region": "EMEA",
+      "description": "CCEC-Côte d'Ivoire Rep Of",
+      "country": "Ivory Coast",
+      "ou": "Africa"
+    },
+    {
+      "companyCode": "1401",
+      "region": "APAC",
+      "description": "CC Myanmar Overseas Hold",
+      "country": "Singapore",
+      "ou": "ASP"
+    },
+    {
+      "companyCode": "1404",
+      "region": "APAC",
+      "description": "CC Sri Lanka Pvt Ltd",
+      "country": "Sri Lanka",
+      "ou": "INSWA"
+    },
+    {
+      "companyCode": "1407",
+      "region": "APAC",
+      "description": "Coca-Cola Bangladesh Ltd",
+      "country": "Bangladesh",
+      "ou": "INSWA"
+    },
+    {
+      "companyCode": "1423",
+      "region": "APAC",
+      "description": "Coca-Cola Limited",
+      "country": "Myanmar",
+      "ou": "ASP"
+    },
+    {
+      "companyCode": "1424",
+      "region": "LATAM",
+      "description": "INACT-SPBR Inv Argentina",
+      "country": "Argentina",
+      "ou": "Latin America"
+    },
+    {
+      "companyCode": "1433",
+      "region": "LATAM",
+      "description": "KOLACT",
+      "country": "Mexico",
+      "ou": "Latin America"
+    },
+    {
+      "companyCode": "1477",
+      "region": "NA",
+      "description": "EKOCOMPANY, Inc",
+      "country": "United States",
+      "ou": "North America"
+    },
+    {
+      "companyCode": "1493",
+      "region": "EMEA",
+      "description": "Chaywa Coffee Company",
+      "country": "South Africa",
+      "ou": "Africa"
+    },
+    {
+      "companyCode": "1499",
+      "region": "NA",
+      "description": "RPSI II",
+      "country": "United States",
+      "ou": "North America"
+    },
+    {
+      "companyCode": "1500",
+      "region": "NA",
+      "description": "RPSI",
+      "country": "United States",
+      "ou": "North America"
+    },
+    {
+      "companyCode": "1501",
+      "region": "NA",
+      "description": "Beverage Products Ltd",
+      "country": "United States",
+      "ou": "North America"
+    },
+    {
+      "companyCode": "1502",
+      "region": "NA",
+      "description": "Barlan",
+      "country": "United States",
+      "ou": "North America"
+    },
+    {
+      "companyCode": "1506",
+      "region": "EMEA",
+      "description": "CC Cent East & West Afric",
+      "country": "Kenya",
+      "ou": "Africa"
+    },
+    {
+      "companyCode": "1512",
+      "region": "EMEA",
+      "description": "Coca-Cola Nigeria Ltd",
+      "country": "Nigeria",
+      "ou": "Africa"
+    },
+    {
+      "companyCode": "1519",
+      "region": "EMEA",
+      "description": "CC Africa (Proprietary) L",
+      "country": "South Africa",
+      "ou": "Africa"
+    },
+    {
+      "companyCode": "1521",
+      "region": "EMEA",
+      "description": "INACT-Waveside Ltd",
+      "country": "South Africa",
+      "ou": "Africa"
+    },
+    {
+      "companyCode": "1524",
+      "region": "NA",
+      "description": "Minute Maid Canada",
+      "country": "Canada",
+      "ou": "North America"
+    },
+    {
+      "companyCode": "1530",
+      "region": "EMEA",
+      "description": "Comp Servicios Beb Refr",
+      "country": "Spain",
+      "ou": "Europe"
+    },
+    {
+      "companyCode": "1532",
+      "region": "NA",
+      "description": "Inmex",
+      "country": "United States",
+      "ou": "North America"
+    },
+    {
+      "companyCode": "1535",
+      "region": "EMEA",
+      "description": "Refrescos Envasados",
+      "country": "Spain",
+      "ou": "Europe"
+    },
+    {
+      "companyCode": "1538",
+      "region": "APAC",
+      "description": "Coca-Cola South Pacific",
+      "country": "Australia",
+      "ou": "ASP"
+    },
+    {
+      "companyCode": "1541",
+      "region": "APAC",
+      "description": "PT. Coca-Cola Indonesia",
+      "country": "Indonesia",
+      "ou": "ASP"
+    },
+    {
+      "companyCode": "1551",
+      "region": "NA",
+      "description": "Coca-Cola Ltd.",
+      "country": "Canada",
+      "ou": "North America"
+    },
+    {
+      "companyCode": "1555",
+      "region": "NA",
+      "description": "TCCC - Puerto Rico Branch",
+      "country": "Puerto Rico",
+      "ou": "North America"
+    },
+    {
+      "companyCode": "1557",
+      "region": "EMEA",
+      "description": "Coca-Cola Italia S.r.l.",
+      "country": "Italy",
+      "ou": "Europe"
+    },
+    {
+      "companyCode": "1561",
+      "region": "EMEA",
+      "description": "Coca-Cola Hellas S.A.",
+      "country": "Greece",
+      "ou": "Europe"
+    },
+    {
+      "companyCode": "1564",
+      "region": "EMEA",
+      "description": "Coca-Cola Holdings Ltd -",
+      "country": "United Kingdom",
+      "ou": "Europe"
+    },
+    {
+      "companyCode": "1566",
+      "region": "NA",
+      "description": "Soft Drink Services Co",
+      "country": "United States",
+      "ou": "North America"
+    },
+    {
+      "companyCode": "1575",
+      "region": "EMEA",
+      "description": "Coca-Cola GmbH",
+      "country": "Germany",
+      "ou": "Europe"
+    },
+    {
+      "companyCode": "1583",
+      "region": "EMEA",
+      "description": "Coca-Cola Ges m.b.H.",
+      "country": "Austria",
+      "ou": "Europe"
+    },
+    {
+      "companyCode": "1588",
+      "region": "EMEA",
+      "description": "Coca-Cola Finland OY",
+      "country": "Finland",
+      "ou": "Europe"
+    },
+    {
+      "companyCode": "1593",
+      "region": "EMEA",
+      "description": "CC International Sales",
+      "country": "United Kingdom",
+      "ou": "Europe"
+    },
+    {
+      "companyCode": "1598",
+      "region": "EMEA",
+      "description": "Computer Services GMBH",
+      "country": "Austria",
+      "ou": "Europe"
+    },
+    {
+      "companyCode": "1603",
+      "region": "LATAM",
+      "description": "PISA",
+      "country": "Mexico",
+      "ou": "Latin America"
+    },
+    {
+      "companyCode": "1612",
+      "region": "EMEA",
+      "description": "AI - Egypt Branch",
+      "country": "Egypt",
+      "ou": "Africa"
+    },
+    {
+      "companyCode": "1618",
+      "region": "LATAM",
+      "description": "Coca-Cola de Chile S.A.",
+      "country": "Chile",
+      "ou": "Latin America"
+    },
+    {
+      "companyCode": "1619",
+      "region": "NA",
+      "description": "Caribbean Intl Sales Corp",
+      "country": "United States",
+      "ou": "North America"
+    },
+    {
+      "companyCode": "1626",
+      "region": "APAC",
+      "description": "Coca-Cola (Japan) Company",
+      "country": "Japan",
+      "ou": "JSK"
+    },
+    {
+      "companyCode": "1630",
+      "region": "APAC",
+      "description": "CC Tokyo R&D, Ltd.",
+      "country": "Japan",
+      "ou": "JSK"
+    },
+    {
+      "companyCode": "1632",
+      "region": "APAC",
+      "description": "CCFEL - Bangladesh Branch",
+      "country": "Bangladesh",
+      "ou": "INSWA"
+    },
+    {
+      "companyCode": "1637",
+      "region": "APAC",
+      "description": "Coca-Cola Korea Comp Ltd",
+      "country": "South Korea",
+      "ou": "ASP"
+    },
+    {
+      "companyCode": "1638",
+      "region": "APAC",
+      "description": "Coca-Cola China Ltd.",
+      "country": "Hong Kong",
+      "ou": "GCM"
+    },
+    {
+      "companyCode": "1644",
+      "region": "APAC",
+      "description": "CC Far East Ltd - HQ",
+      "country": "Singapore",
+      "ou": "ASP"
+    },
+    {
+      "companyCode": "1648",
+      "region": "APAC",
+      "description": "CC Far East Ltd - Reg. HQ",
+      "country": "Philippines",
+      "ou": "ASP"
+    },
+    {
+      "companyCode": "1653",
+      "region": "EMEA",
+      "description": "Coca-Cola Nederland BV",
+      "country": "Netherlands",
+      "ou": "Europe"
+    },
+    {
+      "companyCode": "1656",
+      "region": "EMEA",
+      "description": "Conco Ltd -Swaziland Bran",
+      "country": "Eswatini",
+      "ou": "CPS"
+    },
+    {
+      "companyCode": "1665",
+      "region": "LATAM",
+      "description": "SIAAG S de RL de CV",
+      "country": "Mexico",
+      "ou": "Latin America"
+    },
+    {
+      "companyCode": "1666",
+      "region": "EMEA",
+      "description": "Beverage Services Ltd",
+      "country": "United Kingdom",
+      "ou": "Europe"
+    },
+    {
+      "companyCode": "1678",
+      "region": "EMEA",
+      "description": "Coca-Cola Midi SAS",
+      "country": "France",
+      "ou": "CPS"
+    },
+    {
+      "companyCode": "1679",
+      "region": "EMEA",
+      "description": "Coca-Cola Trading NL B.V.",
+      "country": "Netherlands",
+      "ou": "Europe"
+    },
+    {
+      "companyCode": "1682",
+      "region": "EMEA",
+      "description": "Minute Maid Juices SA/NV",
+      "country": "Belgium",
+      "ou": "Europe"
+    },
+    {
+      "companyCode": "1688",
+      "region": "EMEA",
+      "description": "Coca-Cola Romania SRL",
+      "country": "Romania",
+      "ou": "Europe"
+    },
+    {
+      "companyCode": "1689",
+      "region": "EMEA",
+      "description": "Coca-Cola Bulgaria EOOD",
+      "country": "Bulgaria",
+      "ou": "Europe"
+    },
+    {
+      "companyCode": "1701",
+      "region": "EMEA",
+      "description": "SIBIL SRL",
+      "country": "Italy",
+      "ou": "Europe"
+    },
+    {
+      "companyCode": "1702",
+      "region": "LATAM",
+      "description": "CC Industrias Ltda - Braz",
+      "country": "Brazil",
+      "ou": "Latin America"
+    },
+    {
+      "companyCode": "1703",
+      "region": "LATAM",
+      "description": "Itacan Refigerantes Ltda",
+      "country": "Brazil",
+      "ou": "Latin America"
+    },
+    {
+      "companyCode": "1712",
+      "region": "NA",
+      "description": "Brucephil Holding Company",
+      "country": "United States",
+      "ou": "North America"
+    },
+    {
+      "companyCode": "1723",
+      "region": "NA",
+      "description": "Barq's, Inc.",
+      "country": "United States",
+      "ou": "North America"
+    },
+    {
+      "companyCode": "1724",
+      "region": "NA",
+      "description": "Barq's, Inc. Tax Basis",
+      "country": "United States",
+      "ou": "North America"
+    },
+    {
+      "companyCode": "1725",
+      "region": "NA",
+      "description": "Delaware Punch Company",
+      "country": "United States",
+      "ou": "North America"
+    },
+    {
+      "companyCode": "1726",
+      "region": "NA",
+      "description": "Worldwide Creative Serv.",
+      "country": "United States",
+      "ou": "North America"
+    },
+    {
+      "companyCode": "1731",
+      "region": "EMEA",
+      "description": "CC CIS Srvc - Kazakhastan",
+      "country": "Kazakhstan",
+      "ou": "Eurasia & Middle East"
+    },
+    {
+      "companyCode": "1732",
+      "region": "EMEA",
+      "description": "SA Coca-Cola Services",
+      "country": "Belgium",
+      "ou": "Europe"
+    },
+    {
+      "companyCode": "1735",
+      "region": "LATAM",
+      "description": "Soft Drink Services-Boliv",
+      "country": "Bolivia",
+      "ou": "Latin America"
+    },
+    {
+      "companyCode": "1743",
+      "region": "LATAM",
+      "description": "INACT-CC Svc de Venezuela",
+      "country": "Venezuela",
+      "ou": "Latin America"
+    },
+    {
+      "companyCode": "1755",
+      "region": "EMEA",
+      "description": "International Beverages U",
+      "country": "Ireland",
+      "ou": "CPS"
+    },
+    {
+      "companyCode": "1758",
+      "region": "EMEA",
+      "description": "Coca-Cola Services France",
+      "country": "France",
+      "ou": "Europe"
+    },
+    {
+      "companyCode": "1760",
+      "region": "EMEA",
+      "description": "CC Mesrubat Pazarlama",
+      "country": "Turkey",
+      "ou": "Eurasia & Middle East"
+    },
+    {
+      "companyCode": "1761",
+      "region": "EMEA",
+      "description": "Coca-Cola Hungary Service",
+      "country": "Hungary",
+      "ou": "Europe"
+    },
+    {
+      "companyCode": "1762",
+      "region": "LATAM",
+      "description": "Coca-Cola de Ecuador SA",
+      "country": "Ecuador",
+      "ou": "Latin America"
+    },
+    {
+      "companyCode": "1766",
+      "region": "EMEA",
+      "description": "Beverage Services Tunisia",
+      "country": "Tunisia",
+      "ou": "Africa"
+    },
+    {
+      "companyCode": "1775",
+      "region": "LATAM",
+      "description": "Recofarma Ind do Amazona",
+      "country": "Brazil",
+      "ou": "Latin America"
+    },
+    {
+      "companyCode": "1780",
+      "region": "EMEA",
+      "description": "Coca-Cola Slovakia sro",
+      "country": "Slovakia",
+      "ou": "Europe"
+    },
+    {
+      "companyCode": "1781",
+      "region": "EMEA",
+      "description": "CC Ceska Republika sro",
+      "country": "Czech Republic",
+      "ou": "Europe"
+    },
+    {
+      "companyCode": "1783",
+      "region": "APAC",
+      "description": "CC Far East Ltd - Malaysi",
+      "country": "Malaysia",
+      "ou": "ASP"
+    },
+    {
+      "companyCode": "1791",
+      "region": "EMEA",
+      "description": "INACT-Coca-Cola Adria Ltd",
+      "country": "Croatia",
+      "ou": "Europe"
+    },
+    {
+      "companyCode": "1795",
+      "region": "LATAM",
+      "description": "COCA-COLA BEBIDAS DE CO",
+      "country": "Colombia",
+      "ou": "Latin America"
+    },
+    {
+      "companyCode": "1796",
+      "region": "LATAM",
+      "description": "Coca-Cola Serv Peru",
+      "country": "Peru",
+      "ou": "Latin America"
+    },
+    {
+      "companyCode": "1798",
+      "region": "LATAM",
+      "description": "Dist La Hispaniola Comp",
+      "country": "Dominican Republic",
+      "ou": "Latin America"
+    },
+    {
+      "companyCode": "1799",
+      "region": "LATAM",
+      "description": "Comp Servicios Dist Norte",
+      "country": "Guatemala",
+      "ou": "Latin America"
+    },
+    {
+      "companyCode": "1800",
+      "region": "LATAM",
+      "description": "Comp Servicios Dist Centr",
+      "country": "Honduras",
+      "ou": "Latin America"
+    },
+    {
+      "companyCode": "1801",
+      "region": "APAC",
+      "description": "Coca-Cola Oceania Limited",
+      "country": "New Zealand",
+      "ou": "ASP"
+    },
+    {
+      "companyCode": "1802",
+      "region": "EMEA",
+      "description": "Coca-Cola AB",
+      "country": "Sweden",
+      "ou": "Europe"
+    },
+    {
+      "companyCode": "1804",
+      "region": "EMEA",
+      "description": "Coca-Cola Norge AS",
+      "country": "Norway",
+      "ou": "Europe"
+    },
+    {
+      "companyCode": "1805",
+      "region": "NA",
+      "description": "Minute Maid International",
+      "country": "United States",
+      "ou": "North America"
+    },
+    {
+      "companyCode": "1811",
+      "region": "EMEA",
+      "description": "Coca-Cola Schweiz GmbH",
+      "country": "Switzerland",
+      "ou": "Europe"
+    },
+    {
+      "companyCode": "1817",
+      "region": "EMEA",
+      "description": "CC Soft Drinks Cons Belar",
+      "country": "Belarus",
+      "ou": "Europe"
+    },
+    {
+      "companyCode": "1824",
+      "region": "EMEA",
+      "description": "ABC Limited",
+      "country": "Uganda",
+      "ou": "Africa"
+    },
+    {
+      "companyCode": "1825",
+      "region": "EMEA",
+      "description": "INACT-Allied Beverages Pr",
+      "country": "Ethiopia",
+      "ou": "Africa"
+    },
+    {
+      "companyCode": "1826",
+      "region": "EMEA",
+      "description": "Keringet",
+      "country": "Kenya",
+      "ou": "Africa"
+    },
+    {
+      "companyCode": "1836",
+      "region": "APAC",
+      "description": "INACT-CC Indochina Pte L",
+      "country": "Japan",
+      "ou": "ASP"
+    },
+    {
+      "companyCode": "1837",
+      "region": "APAC",
+      "description": "INACT-Coca-Cola Cambodia",
+      "country": "Japan",
+      "ou": "ASP"
+    },
+    {
+      "companyCode": "1838",
+      "region": "EMEA",
+      "description": "INACT-EuropeanRefreshmnts",
+      "country": "Ireland",
+      "ou": "CPS"
+    },
+    {
+      "companyCode": "1839",
+      "region": "NA",
+      "description": "CRI Financial Corporation",
+      "country": "United States",
+      "ou": "North America"
+    },
+    {
+      "companyCode": "1847",
+      "region": "EMEA",
+      "description": "TCCEC - Dubai Branch",
+      "country": "United Arab Emirates",
+      "ou": "Eurasia & Middle East"
+    },
+    {
+      "companyCode": "1850",
+      "region": "EMEA",
+      "description": "Allied Beverages",
+      "country": "Italy",
+      "ou": "Europe"
+    },
+    {
+      "companyCode": "1853",
+      "region": "EMEA",
+      "description": "Allied Bevg Adriatic doo",
+      "country": "Serbia",
+      "ou": "Europe"
+    },
+    {
+      "companyCode": "1880",
+      "region": "NA",
+      "description": "Coca-Cola Refreshments",
+      "country": "United States",
+      "ou": "North America"
+    },
+    {
+      "companyCode": "1882",
+      "region": "NA",
+      "description": "Coca-Cola Beverages West",
+      "country": "United States",
+      "ou": "North America"
+    },
+    {
+      "companyCode": "1891",
+      "region": "EMEA",
+      "description": "Beverage Refreshments",
+      "country": "Ireland",
+      "ou": "CPS"
+    },
+    {
+      "companyCode": "1908",
+      "region": "APAC",
+      "description": "Southerly Change Drinks P",
+      "country": "Australia",
+      "ou": "ASP"
+    },
+    {
+      "companyCode": "1910",
+      "region": "APAC",
+      "description": "CC AUS Ovrs holdg PTY LTD",
+      "country": "Australia",
+      "ou": "ASP"
+    },
+    {
+      "companyCode": "1911",
+      "region": "EMEA",
+      "description": "CC Balti Jookide AS",
+      "country": "Estonia",
+      "ou": "Europe"
+    },
+    {
+      "companyCode": "1912",
+      "region": "EMEA",
+      "description": "Global Libations Supply",
+      "country": "Switzerland",
+      "ou": "CPS"
+    },
+    {
+      "companyCode": "1913",
+      "region": "APAC",
+      "description": "PT Bevrg. Partnr Wldwd ID",
+      "country": "Indonesia",
+      "ou": "ASP"
+    },
+    {
+      "companyCode": "1914",
+      "region": "LATAM",
+      "description": "Coca-Cola Servicios de VZ",
+      "country": "Venezuela",
+      "ou": "Latin America"
+    },
+    {
+      "companyCode": "1915",
+      "region": "APAC",
+      "description": "INACT-Pacific Dairy Pte.",
+      "country": "Singapore",
+      "ou": "ASP"
+    },
+    {
+      "companyCode": "1916",
+      "region": "EMEA",
+      "description": "Tropico SAS",
+      "country": "France",
+      "ou": "CPS"
+    },
+    {
+      "companyCode": "1918",
+      "region": "APAC",
+      "description": "Coca-Cola Vietnam LLC",
+      "country": "Vietnam",
+      "ou": "ASP"
+    },
+    {
+      "companyCode": "1919",
+      "region": "EMEA",
+      "description": "Coca-Cola Kazakhstan LLP",
+      "country": "Kazakhstan",
+      "ou": "Eurasia & Middle East"
+    },
+    {
+      "companyCode": "1920",
+      "region": "EMEA",
+      "description": "Sociedade de Servicos",
+      "country": "Portugal",
+      "ou": "Europe"
+    },
+    {
+      "companyCode": "1922",
+      "region": "APAC",
+      "description": "Coca-Cola Asia PacificPte",
+      "country": "Singapore",
+      "ou": "ASP"
+    },
+    {
+      "companyCode": "1926",
+      "region": "EMEA",
+      "description": "EURL Beverage Services",
+      "country": "Algeria",
+      "ou": "Africa"
+    },
+    {
+      "companyCode": "1936",
+      "region": "EMEA",
+      "description": "Coca-Cola Adria d.o.o",
+      "country": "Croatia",
+      "ou": "Europe"
+    },
+    {
+      "companyCode": "1937",
+      "region": "EMEA",
+      "description": "Beverage Financial Centre",
+      "country": "Ireland",
+      "ou": "Europe"
+    },
+    {
+      "companyCode": "1940",
+      "region": "APAC",
+      "description": "Int'l Refresh (India) Pvt",
+      "country": "India",
+      "ou": "INSWA"
+    },
+    {
+      "companyCode": "1944",
+      "region": "NA",
+      "description": "Red Tree Beverages, LLC",
+      "country": "United States",
+      "ou": "North America"
+    },
+    {
+      "companyCode": "1945",
+      "region": "EMEA",
+      "description": "Belarus Beverage Services",
+      "country": "Belarus",
+      "ou": "Europe"
+    },
+    {
+      "companyCode": "1946",
+      "region": "EMEA",
+      "description": "Coca-Cola CA Services LLC",
+      "country": "Uzbekistan",
+      "ou": "Eurasia & Middle East"
+    },
+    {
+      "companyCode": "1949",
+      "region": "EMEA",
+      "description": "Red Beverages Refresh Co",
+      "country": "Saudi Arabia",
+      "ou": "Eurasia & Middle East"
+    },
+    {
+      "companyCode": "1950",
+      "region": "EMEA",
+      "description": "EBOH ULC",
+      "country": "Ireland",
+      "ou": "CPS"
+    },
+    {
+      "companyCode": "1951",
+      "region": "EMEA",
+      "description": "EBOH ULC France",
+      "country": "France",
+      "ou": "CPS"
+    },
+    {
+      "companyCode": "1953",
+      "region": "EMEA",
+      "description": "Coca-Cola Bulgaria EOOD",
+      "country": "Bulgaria",
+      "ou": "Europe"
+    },
+    {
+      "companyCode": "1990",
+      "region": "EMEA",
+      "description": "European Refreshments Unl",
+      "country": "Ireland",
+      "ou": "CPS"
+    },
+    {
+      "companyCode": "1991",
+      "region": "EMEA",
+      "description": "European Refreshments Unl",
+      "country": "Ireland",
+      "ou": "CPS"
+    },
+    {
+      "companyCode": "5732",
+      "region": "EMEA",
+      "description": "Coca - Cola Gestion S.A.",
+      "country": "Spain",
+      "ou": "Europe"
+    },
+    {
+      "companyCode": "5956",
+      "region": "EMEA",
+      "description": "Fundacion Coca-Cola",
+      "country": "Spain",
+      "ou": "Europe"
+    },
+    {
+      "companyCode": "7000",
+      "region": "NA",
+      "description": "CC Interamerican Corp",
+      "country": "United States",
+      "ou": "North America"
+    },
+    {
+      "companyCode": "7004",
+      "region": "LATAM",
+      "description": "CCIC - Costa Rica Branch",
+      "country": "Costa Rica",
+      "ou": "Latin America"
+    },
+    {
+      "companyCode": "7005",
+      "region": "LATAM",
+      "description": "CCIC - Panama Branch",
+      "country": "Panama",
+      "ou": "Latin America"
+    },
+    {
+      "companyCode": "7009",
+      "region": "NA",
+      "description": "Caribbean Refrescos Inc",
+      "country": "Puerto Rico",
+      "ou": "CPS"
+    },
+    {
+      "companyCode": "7601",
+      "region": "NA",
+      "description": "INACT-CCNR USA Export Sal",
+      "country": "United States",
+      "ou": "North America"
+    },
+    {
+      "companyCode": "7604",
+      "region": "NA",
+      "description": "INACT-BPW Canada",
+      "country": "United States",
+      "ou": "North America"
+    },
+    {
+      "companyCode": "7606",
+      "region": "NA",
+      "description": "INACT-Bev. Part. Worlwide",
+      "country": "United States",
+      "ou": "North America"
+    }
+  ]
+}

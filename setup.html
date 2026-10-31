@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PO Portal setup</title>
+<style>body{font:15px system-ui,Segoe UI,Arial,sans-serif;background:#f3f7f7;color:#1f3a42;margin:0;padding:24px}main{max-width:520px;margin:4vh auto;background:#fff;border-radius:18px;padding:26px;box-shadow:0 10px 40px rgba(0,0,0,.08)}h1{margin:0 0 4px;font-size:22px}p{color:#5b747c;line-height:1.45}label{display:block;margin:14px 0 4px;font-weight:600;font-size:13.5px}input{width:100%;box-sizing:border-box;padding:10px 12px;border:1px solid #c9d8d8;border-radius:10px;font:inherit}button{margin-top:18px;width:100%;padding:12px;border:0;border-radius:10px;background:#c8102e;color:#fff;font:600 15px system-ui;cursor:pointer}button:disabled{opacity:.6}#msg{margin-top:14px;min-height:20px;font-size:14px}.ok{color:#14663a}.bad{color:#b3261e}a{color:#c8102e}</style></head>
+<body><main>
+<h1>Change reviewer password</h1>
+<p>The reviewer password protects the Reviewer console. The default is <b>TCCC</b>: change it now. It is stored as a hash in your private data repository.</p>
+<label for="team">Team access key <span style="font-weight:400;color:#5b747c">(leave blank if this browser is already connected)</span></label>
+<input id="team" type="password" autocomplete="off" placeholder="github_pat_…">
+<label for="cur">Current reviewer password</label><input id="cur" type="password" autocomplete="off">
+<label for="new1">New reviewer password (min. 6 characters)</label><input id="new1" type="password" autocomplete="new-password">
+<label for="new2">Repeat new password</label><input id="new2" type="password" autocomplete="new-password">
+<button id="go">Change password</button><div id="msg"></div>
+<p style="margin-top:20px"><a href="./">← Back to the portal</a></p>
+</main>
+<script src="config.js"></script>
+<script>
+(function () {
+  const cfg = Object.assign({ dataRepo: '', branch: 'main', dataPath: 'data' }, window.PO_CONFIG || {});
+  if (!cfg.dataRepo && /\.github\.io$/i.test(location.hostname)) cfg.dataRepo = location.hostname.split('.')[0] + '/po-portal-data';
+  const $ = id => document.getElementById(id); const msg = (t, c) => { $('msg').textContent = t; $('msg').className = c || ''; };
+  const hex = async t => [...new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(t)))].map(b => b.toString(16).padStart(2, '0')).join('');
+  const path = '/repos/' + cfg.dataRepo + '/contents/' + [cfg.dataPath.replace(/^\/+|\/+$/g, ''), 'reviewer-key.txt'].filter(Boolean).join('/');
+  async function gh(method, url, key, body) {
+    return fetch('https://api.github.com' + url, { method, cache: 'no-store', headers: { Authorization: 'Bearer ' + key, Accept: 'application/vnd.github+json', ...(body ? { 'Content-Type': 'application/json' } : {}) }, body: body ? JSON.stringify(body) : undefined });
+  }
+  $('go').addEventListener('click', async () => {
+    const key = $('team').value.trim() || localStorage.getItem('po_team_key') || '';
+    if (!key) return msg('Paste the team access key.', 'bad');
+    if ($('new1').value.length < 6) return msg('The new password needs at least 6 characters.', 'bad');
+    if ($('new1').value !== $('new2').value) return msg('The new passwords do not match.', 'bad');
+    $('go').disabled = true; msg('Working…');
+    try {
+      const res = await gh('GET', path + '?ref=' + encodeURIComponent(cfg.branch), key);
+      if (res.status === 401) throw new Error('The team access key is invalid.');
+      let stored = await hex('TCCC'); let sha;
+      if (res.ok) { const j = await res.json(); sha = j.sha; stored = atob(j.content.replace(/\n/g, '')).trim().toLowerCase(); }
+      else if (res.status !== 404) throw new Error('GitHub answered ' + res.status + '.');
+      if ((await hex($('cur').value)) !== stored) throw new Error('The current reviewer password is incorrect.');
+      const put = await gh('PUT', path, key, { message: 'data: change reviewer password', content: btoa(await hex($('new1').value) + '\n'), branch: cfg.branch, ...(sha ? { sha } : {}) });
+      if (!put.ok) throw new Error('Could not save (GitHub ' + put.status + '). The key needs Contents: Read and write on the data repository.');
+      localStorage.setItem('po_team_key', key);
+      msg('Done. The new reviewer password is active (reviewers must unlock again).', 'ok');
+    } catch (e) { msg(e.message, 'bad'); }
+    $('go').disabled = false;
+  });
+})();
+</script></body></html>

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 420" preserveAspectRatio="none">
+  <defs>
+    <linearGradient id="ribbon" x1="0" y1="0" x2="0.08" y2="1">
+      <stop offset="0" stop-color="#ff5a70"/>
+      <stop offset="0.16" stop-color="#f51b3a"/>
+      <stop offset="0.52" stop-color="#cf0029"/>
+      <stop offset="0.78" stop-color="#ed1436"/>
+      <stop offset="1" stop-color="#a80022"/>
+    </linearGradient>
+    <linearGradient id="highlight" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff" stop-opacity=".72"/>
+      <stop offset=".45" stop-color="#fff" stop-opacity=".22"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="underside" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#8d001d" stop-opacity="0"/>
+      <stop offset="1" stop-color="#760018" stop-opacity=".5"/>
+    </linearGradient>
+    <filter id="soft-shadow" x="-5%" y="-30%" width="110%" height="160%">
+      <feGaussianBlur stdDeviation="8"/>
+    </filter>
+  </defs>
+  <path d="M-30 309 C190 263 315 327 490 291 C670 254 755 110 930 160 C1124 216 1248 310 1436 245 C1582 194 1684 195 1830 143 L1830 319 C1674 366 1586 355 1436 381 C1238 417 1113 325 927 269 C749 215 676 341 487 352 C286 364 147 316 -30 389 Z" fill="#820019" opacity=".30" filter="url(#soft-shadow)"/>
+  <path d="M-30 286 C178 244 315 309 493 273 C673 237 754 92 930 142 C1124 198 1245 291 1436 225 C1584 174 1686 176 1830 123 L1830 292 C1674 340 1586 328 1436 354 C1238 390 1113 301 927 245 C749 191 676 317 487 328 C286 340 147 292 -30 365 Z" fill="url(#ribbon)"/>
+  <path d="M-30 286 C178 244 315 309 493 273 C673 237 754 92 930 142 C1124 198 1245 291 1436 225 C1584 174 1686 176 1830 123" fill="none" stroke="url(#highlight)" stroke-width="12" stroke-linecap="round"/>
+  <path d="M-30 326 C175 280 311 341 493 306 C675 270 758 135 930 181 C1123 232 1252 324 1436 260 C1583 209 1683 207 1830 158" fill="none" stroke="#ffb0bc" stroke-opacity=".5" stroke-width="3"/>
+  <path d="M-30 365 C147 292 286 340 487 328 C676 317 749 191 927 245 C1113 301 1238 390 1436 354 C1586 328 1674 340 1830 292 L1830 330 C1674 377 1586 368 1436 392 C1238 426 1113 349 927 286 C749 229 676 359 487 374 C286 385 147 337 -30 411 Z" fill="url(#underside)" opacity=".72"/>
+</svg>

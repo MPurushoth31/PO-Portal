@@ -1,0 +1,551 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#c8102e" />
+  <meta name="description" content="TCCC Purchase Order Request Portal — colorful welcome workspace, guided PO creation, private request tracking and reviewer workflow." />
+  <title>TCCC PO Request Portal | Procurement Workspace</title>
+  <script src="config.js"></script>
+  <script src="static-api.js"></script>
+  <link rel="stylesheet" href="styles.css?v=2.6.35-delete-master" />
+  <link rel="stylesheet" href="iconography.css?v=2.6.33-full-width" />
+  <link rel="stylesheet" href="home.css?v=2.6.33-full-width" />
+  <link rel="stylesheet" href="reports-reviewer-enhancements.css?v=2.6.33-full-width" />
+  <link rel="stylesheet" href="overview-redesign.css?v=2.6.33-full-width" />
+  <link rel="stylesheet" href="full-width-layout.css?v=2.6.33-full-width" />
+  <link rel="stylesheet" href="motion-effects.css?v=motion-1" />
+  <link rel="stylesheet" href="motion-pages.css?v=pages-1" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="brand-wordmark" aria-label="Coca-Cola">Coca-Cola</div>
+        <div class="brand-copy"><strong>TCCC PO Request Portal</strong><span>Purchase Order Workspace</span></div>
+        <button class="icon-button mobile-nav-close" id="close-sidebar" type="button" aria-label="Close navigation" title="Close navigation">×</button>
+      </div>
+      <div class="workspace-label">WORKSPACE</div>
+      <nav class="side-nav" aria-label="Main navigation">
+        <button class="nav-item" data-view="home"><span class="nav-icon">⌂</span><span>Home</span></button>
+        <button class="nav-item reviewer-only" data-view="overview"><span class="nav-icon">▦</span><span>Overview</span></button>
+        <button class="nav-item requester-only" data-action="create"><span class="nav-icon">＋</span><span>Create PO</span></button>
+        <button class="nav-item requester-only" data-view="track"><span class="nav-icon">⌕</span><span>Track My Request</span></button>
+        <button class="nav-item reviewer-only" data-view="requests"><span class="nav-icon">▤</span><span>PO Requests</span><span class="nav-count" id="nav-request-count">0</span></button>
+        <button class="nav-item reviewer-only" data-view="master"><span class="nav-icon">▥</span><span>Master Data</span></button>
+        <button class="nav-item reviewer-only" data-view="reports"><span class="nav-icon">▧</span><span>Reports</span></button>
+      </nav>
+      <div class="sidebar-spacer"></div>
+      <div class="sidebar-help reviewer-only">
+        <div class="help-icon">i</div>
+        <strong>Need a quick start?</strong>
+        <p>Create a request, save it as a draft, or submit it for review.</p>
+        <button class="sidebar-help-button" data-action="create">Create a request <span>↗</span></button>
+      </div>
+      <div class="sidebar-footer"><span class="status-dot"></span><span>Procurement workspace</span></div>
+    </aside>
+    <div class="mobile-scrim" id="mobile-scrim" aria-hidden="true"></div>
+
+    <main class="main-shell">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="icon-button mobile-menu" id="open-sidebar" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="sidebar">☰</button>
+          <div class="breadcrumbs"><span>Workspace</span><b>/</b><strong id="breadcrumb-current">Overview</strong></div>
+        </div>
+        <div class="topbar-right">
+          <label class="global-search reviewer-only"><span>⌕</span><input id="global-search" type="search" placeholder="Search requests…" aria-label="Search requests" /><kbd>↵</kbd></label>
+          <div class="top-date"><span class="calendar-mini">▦</span><span id="top-date">—</span></div>
+          <button class="button button-secondary" id="reviewer-access" type="button">Reviewer console ↗</button><button class="button button-primary top-create" data-action="create"><span class="button-plus">＋</span> New request</button>
+        </div>
+      </header>
+
+      <div class="content-area">
+        <section class="view active home-view" id="view-home" aria-labelledby="home-title">
+          <section class="home-welcome-hero">
+            <div class="home-welcome-copy">
+              <span class="home-welcome-kicker"><i></i> TOGETHER FOR A BRIGHTER TOMORROW</span>
+              <h1 id="home-title"><span class="home-welcome-script">Welcome to</span><span class="home-welcome-title-line"><em>TCCC PO Request Portal</em></span></h1>
+              <h2 class="home-welcome-prompt">Simpler requests. Faster approvals.</h2>
+              <p>Create, track and manage purchase order requests in one connected workspace.</p>
+              <div class="home-welcome-actions">
+                <button class="button home-primary-action" type="button" data-action="create"><span aria-hidden="true">＋</span> Create PO Request <span aria-hidden="true">→</span></button>
+                <button class="button home-secondary-action" type="button" data-view="track"><span aria-hidden="true">⌕</span> Track My Request <span aria-hidden="true">↗</span></button>
+              </div>
+              <div class="home-trust-row"><span><i>▤</i> Simpler requests</span><span><i>ϟ</i> Faster approvals</span><span><i>✓</i> Greater transparency</span></div>
+            </div>
+            <div class="home-welcome-side" aria-label="Brand message">
+              <div class="home-brand-slogan"><span>Great things happen</span><strong>when every detail<br/>moves forward.</strong><i></i></div>
+              <div class="home-glass-card"><span class="home-glass-icon">✓</span><div><strong>One connected workflow</strong><small>Submit · Review · Resolve · Create PO</small></div></div>
+            </div>
+          </section>
+
+          <div class="home-action-grid" aria-label="Quick access">
+            <button class="home-action-card home-action-create" type="button" data-action="create">
+              <span class="home-action-number">01</span><span class="home-action-icon" aria-hidden="true"><svg viewBox="0 0 40 40" focusable="false"><path d="M9 4.5h15l7 7V32a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3V7.5a3 3 0 0 1 3-3Z"/><path d="M24 5v7h7M12 18h12M12 23h10"/><circle cx="29" cy="29" r="7" class="icon-badge"/><path d="M29 25.5v7M25.5 29h7" class="icon-badge-mark"/></svg></span>
+              <span class="home-action-copy"><strong>Create a Purchase Order</strong><small>Start a new purchase order request with vendor, accounting, delivery and line-item details.</small></span>
+              <span class="home-action-cta">Create a new request <b>→</b></span>
+              <span class="home-action-corner" aria-hidden="true">↗</span>
+            </button>
+            <button class="home-action-card home-action-track" type="button" data-view="track">
+              <span class="home-action-number">02</span><span class="home-action-icon" aria-hidden="true"><svg viewBox="0 0 40 40" focusable="false"><circle cx="17.5" cy="17.5" r="11"/><path d="m26 26 8 8"/></svg></span>
+              <span class="home-action-copy"><strong>Track My Request</strong><small>Find a submitted request and follow its latest status through the procurement process.</small></span>
+              <span class="home-action-cta">Track your request <b>→</b></span>
+              <span class="home-action-corner" aria-hidden="true">↗</span>
+            </button>
+            <button class="home-action-card home-action-review" type="button" data-action="home-reviewer-console">
+              <span class="home-action-number">03</span><span class="home-action-icon" aria-hidden="true"><svg viewBox="0 0 40 40" focusable="false"><circle cx="14" cy="13" r="5"/><circle cx="27" cy="15" r="4"/><path d="M4.5 31c.8-6.5 4.6-10 9.5-10s8.7 3.5 9.5 10ZM22 23c6-1.3 11.5 2.3 12.5 8"/></svg></span>
+              <span class="home-action-copy"><strong>Reviewer Console</strong><small>Authorized reviewers can review requests, record decisions and update procurement tracking.</small></span>
+              <span class="home-action-cta">Open reviewer console <b>→</b></span>
+              <span class="home-action-corner" aria-hidden="true">↗</span>
+            </button>
+          </div>
+
+          <section class="home-workflow-panel" aria-label="Request workflow">
+            <div class="home-workflow-heading"><span class="home-workflow-icon">◎</span><div><h2>How the request moves forward</h2><p>Follow the main status flow after submission.</p></div></div>
+            <div class="home-workflow-steps">
+              <div class="home-workflow-step"><span>01</span><strong>Submitted on PP+</strong><small>Request received</small></div><i aria-hidden="true">→</i>
+              <div class="home-workflow-step"><span>02</span><strong>Pending for Approval</strong><small>Procurement review</small></div><i aria-hidden="true">→</i>
+              <div class="home-workflow-outcomes"><span>Approval outcome</span><div><b class="outcome-created">PO Created</b><b class="outcome-clarification">Clarification Required</b><b class="outcome-rejected">Rejected</b></div></div>
+            </div>
+          </section>
+
+          <section class="home-inspiration-band" aria-label="Procurement inspiration">
+            <div class="home-inspiration-mark" aria-hidden="true">❝</div>
+            <div class="home-inspiration-copy"><span>ONE TEAM. ONE WORKSPACE.</span><strong>“Great things happen when every detail moves forward.”</strong><small>Clear requests. Better collaboration. Stronger outcomes.</small>
+              <div class="home-inspiration-values"><span><i aria-hidden="true">◎</i> Right requests</span><span><i aria-hidden="true">♧</i> Shared ownership</span><span><i aria-hidden="true">▥</i> Bigger impact</span></div>
+            </div>
+            <div class="home-inspiration-ribbon" aria-hidden="true"></div>
+          </section>
+        </section>
+
+        <section class="view reviewer-only overview-redesigned" id="view-overview" aria-labelledby="overview-title">
+          <div class="page-heading dashboard-heading overview-page-heading">
+            <div>
+              <div class="eyebrow"><span class="eyebrow-dot"></span> PROCUREMENT WORKSPACE</div>
+              <h1 id="overview-title">Procurement Overview</h1>
+              <p>Focus on requests that need action and keep every PO moving forward.</p>
+            </div>
+            <div class="heading-actions">
+              <button class="button button-secondary" id="overview-export" type="button">↓ Export requests</button>
+              <button class="button button-primary" data-action="create" type="button"><span class="button-plus">＋</span> Create PO request</button>
+            </div>
+          </div>
+
+          <section class="dashboard-hero overview-hero-compact" aria-label="Procurement workspace introduction">
+            <div class="dashboard-hero-content">
+              <span class="dashboard-hero-kicker">TCCC PROCUREMENT WORKSPACE</span>
+              <h2>Procurement that moves forward.</h2>
+              <p>Simpler requests. Faster approvals. Clearer ownership from submission to PO creation.</p>
+              <div class="dashboard-hero-actions">
+                <button class="button dashboard-hero-primary" data-action="create" type="button">＋ Create PO Request</button>
+                <button class="button dashboard-hero-secondary" data-view="track" type="button">⌕ Track My Request <span>↗</span></button>
+              </div>
+            </div>
+            <div class="dashboard-hero-note"><span class="dashboard-hero-note-dot"></span><div><strong>One connected workflow</strong><small>Submit · Review · Resolve · Create PO</small></div></div>
+          </section>
+
+          <section class="overview-action-banner" id="overview-action-banner" aria-live="polite">
+            <div class="overview-action-symbol" aria-hidden="true">!</div>
+            <div class="overview-action-message">
+              <strong id="overview-action-headline">You're all caught up</strong>
+              <p id="overview-action-copy">No requests are waiting for the PO Team's first action.</p>
+            </div>
+            <div class="overview-action-total"><span>All requests</span><strong id="metric-total">0</strong></div>
+            <button class="button overview-review-queue-button" id="overview-review-queue-button" data-filter-status="Submitted to PO Team" type="button">Review action queue <span aria-hidden="true">→</span></button>
+          </section>
+
+          <div class="metric-grid overview-metric-grid">
+            <article class="metric-card overview-metric-action"><div class="metric-top"><span>Awaiting PO Team Action</span><span class="metric-icon">↗</span></div><div class="metric-value" id="metric-action">0</div><div class="metric-foot"><span class="metric-subtle">Not yet submitted on PP+</span><span class="overview-metric-tag">Action needed</span></div></article>
+            <article class="metric-card overview-metric-submitted"><div class="metric-top"><span>Submitted on PP+</span><span class="metric-icon">✓</span></div><div class="metric-value" id="metric-ppplus">0</div><div class="metric-foot"><span class="metric-subtle">Submission completed</span><span class="overview-metric-tag">PP+</span></div></article>
+            <article class="metric-card overview-metric-pending"><div class="metric-top"><span>Pending</span><span class="metric-icon">◷</span></div><div class="metric-value" id="metric-pending">0</div><div class="metric-foot"><span class="metric-subtle">Approval or clarification</span><span class="overview-metric-tag">In progress</span></div></article>
+            <article class="metric-card overview-metric-created"><div class="metric-top"><span>PO Created</span><span class="metric-icon">✓</span></div><div class="metric-value" id="metric-created">0</div><div class="metric-foot"><span class="metric-subtle">PO number assigned</span><span class="overview-metric-tag">Complete</span></div></article>
+          </div>
+
+          <div class="overview-grid overview-main-grid">
+            <section class="panel overview-action-queue-panel">
+              <div class="panel-heading overview-panel-heading">
+                <div class="overview-heading-icon overview-red-icon" aria-hidden="true">☷</div>
+                <div class="overview-panel-title"><h2>Needs Your Attention</h2><p>Requests awaiting the PO Team's first action on PP+.</p></div>
+                <span class="overview-queue-count" id="overview-action-queue-count">0 waiting</span>
+              </div>
+              <div class="table-wrap overview-action-queue-wrap" id="overview-action-queue-table-wrap">
+                <table class="data-table overview-action-queue-table" id="overview-action-queue-table">
+                  <thead><tr><th>REQUEST ID</th><th>VENDOR</th><th>REGION</th><th>REQUEST DATE</th><th>PO VALUE</th><th>ACTION</th></tr></thead>
+                  <tbody id="overview-action-queue-body"></tbody>
+                </table>
+              </div>
+              <div class="overview-action-empty" id="overview-action-empty">
+                <span class="overview-empty-icon" aria-hidden="true">✓</span>
+                <strong>No requests waiting for the first action</strong>
+                <p>Requests will appear here until the PO Team submits them on PP+.</p>
+                <button class="button button-secondary button-small" data-view="requests" type="button">View all requests</button>
+              </div>
+            </section>
+
+            <div class="overview-side overview-insights-column">
+              <section class="panel overview-status-panel">
+                <div class="panel-heading overview-panel-heading">
+                  <div class="overview-heading-icon overview-red-icon" aria-hidden="true">◔</div>
+                  <div class="overview-panel-title"><h2>Request Status</h2><p>Current workflow distribution</p></div>
+                </div>
+                <div class="status-summary" id="status-summary"></div>
+                <div class="overview-spend-summary"><span>Total requested value<small>Grouped by currency; no conversion applied</small></span><strong id="metric-value">0.00</strong></div>
+              </section>
+
+              <section class="panel overview-activity-panel">
+                <div class="panel-heading overview-panel-heading">
+                  <div class="overview-heading-icon overview-blue-icon" aria-hidden="true">◷</div>
+                  <div class="overview-panel-title"><h2>Recent Activity</h2><p>Latest recorded workflow updates</p></div>
+                  <button class="text-link" type="button" data-view="requests">View all ↗</button>
+                </div>
+                <div class="overview-activity-list" id="overview-activity-list"></div>
+              </section>
+
+              <section class="panel quick-panel overview-quick-panel">
+                <div class="panel-heading overview-panel-heading"><div class="overview-heading-icon overview-green-icon" aria-hidden="true">✦</div><div class="overview-panel-title"><h2>Quick Actions</h2><p>Common tasks in one click</p></div></div>
+                <button class="quick-action" data-action="create" type="button"><span class="quick-icon teal-bg">＋</span><span><strong>Create a PO request</strong><small>Start a new purchase request</small></span><span class="quick-arrow">↗</span></button>
+                <button class="quick-action" data-view="requests" type="button"><span class="quick-icon blue-bg">≡</span><span><strong>Browse PO requests</strong><small>Search and review the request register</small></span><span class="quick-arrow">↗</span></button>
+                <button class="quick-action" data-view="master" type="button"><span class="quick-icon amber-bg">▦</span><span><strong>Browse master data</strong><small>Look up GLs, cost centers and plants</small></span><span class="quick-arrow">↗</span></button>
+              </section>
+            </div>
+          </div>
+        </section>
+
+        <section class="view" id="view-create">
+          <div class="page-heading form-heading"><div><div class="eyebrow"><span class="eyebrow-dot"></span> REQUEST MANAGEMENT</div><h1 id="form-page-title">Create PO Request</h1><p>Complete the request details and submit. Save a draft to continue later from this browser, or submit when all details are ready.</p></div><div class="heading-actions"><button class="button button-secondary" type="button" data-action="toggle-saved-drafts" id="saved-drafts-toggle">My Saved Drafts (0)</button><button class="button button-secondary" data-action="cancel-form">Clear / cancel</button></div></div>
+          <section id="saved-drafts-panel" class="form-card saved-drafts-panel hidden" aria-labelledby="saved-drafts-title"><div class="saved-drafts-head"><div><h2 id="saved-drafts-title">My Saved Drafts</h2><p>Drafts stay in this browser and do not appear in the Reviewer Console until submitted.</p></div><button type="button" class="button button-quiet button-small" data-action="close-saved-drafts">Close</button></div><div id="saved-drafts-list" class="saved-drafts-list"></div><p class="saved-drafts-note">Supporting documents are not stored with browser drafts. Reattach them when you resume a draft. Submit a completed request to send it to Procurement for review.</p></section>
+          <div class="form-page-layout">
+            <form id="po-form" novalidate>
+              <input type="hidden" id="editing-request-id" />
+              <section class="form-card">
+                <div class="form-section-head"><div class="section-number">01</div><div><h2>Request Details</h2><p>Set the region and describe what this PO is for.</p></div><span class="required-key"><i></i> Required field</span></div>
+                <div class="form-grid three-col">
+                  <div class="field"><label for="region">Region <em>*</em></label><select id="region" required><option value="">Select region</option></select><small>Choose the region that will own this spend.</small></div>
+                  <div class="field"><label for="request-date">Request Date</label><input id="request-date" type="date" readonly /><small>Filled automatically.</small></div>
+                  <div class="field"><label for="currency">Currency <em>*</em></label><select id="currency" required data-allow-custom="true" data-placeholder="Search currency code or type a 3-letter code"><option value="">Select currency or type a code</option></select><small>Choose a listed currency or type a 3-letter currency code, then select “Use as a manual value”.</small></div>
+                  <div class="field span-3"><label for="po-title">Purchase Order Title <em>*</em></label><input id="po-title" maxlength="240" required placeholder="e.g. Office facility maintenance — Q4 2026" /><small>Use a clear title so the request is easy to identify.</small></div>
+                </div>
+              </section>
+
+              <section class="form-card">
+                <div class="form-section-head"><div class="section-number">02</div><div><h2>Vendor Information</h2><p>Enter the vendor name and contact details.</p></div></div>
+                <div class="form-grid two-col">
+                  <div class="field"><label for="vendor-name">Vendor / Company Name <em>*</em></label><input id="vendor-name" required maxlength="220" placeholder="Enter vendor name" /></div>
+                  <div class="field"><label for="vendor-number">Vendor Number <em>*</em></label><input id="vendor-number" required maxlength="80" placeholder="Enter supplier / vendor ID" /><small>Enter the supplier number from Vendor Master Data.</small></div>
+                  <div class="field"><label for="vendor-email">Vendor Contact Email</label><input id="vendor-email" type="email" maxlength="254" placeholder="name@company.com" /></div>
+                  <div class="field"><label for="company-code">Company Code <em>*</em></label><select id="company-code" required data-allow-custom="true" data-placeholder="Search this region’s company codes or type manually"><option value="">Select company code</option></select><small>Options are filtered by Region. If the code is missing, type it and choose “Use as a manual value”.</small></div>
+                  <div class="field span-2"><label for="plant-code">Plant Code <em>*</em></label><select id="plant-code" required data-placeholder="Search plant code, name, city or postal code"><option value="">Search plant code or description</option></select><small>If you do not know the plant code, select “I don’t know — Procurement to confirm”.</small></div>
+                </div>
+                <section class="support-documents-panel" aria-labelledby="support-documents-title">
+                  <div class="support-documents-head"><div><strong id="support-documents-title">Supporting Documents</strong><p>Attach quotations, statements of work, invoices, spreadsheets, images, or any other file your email needs.</p></div><span class="support-documents-count" id="supporting-documents-count">0 files</span></div>
+                  <div id="supporting-dropzone" class="supporting-dropzone" role="region" aria-label="Supporting document drag and drop area">
+                    <div class="support-drop-copy"><span class="support-drop-icon" aria-hidden="true">⇧</span><div><strong>Drag and drop files here</strong><small>Any file type is supported. Attach selected documents manually in your email window before sending.</small></div></div>
+                    <label class="support-upload-button" for="supporting-documents"><span aria-hidden="true">＋</span> Browse files<input id="supporting-documents" type="file" multiple /></label>
+                    <span class="support-upload-note">Up to 5 files · 10 MB per file · 10 MB total</span>
+                  </div>
+                  <div id="supporting-documents-list" class="supporting-documents-list" aria-live="polite"><div class="supporting-documents-empty">No supporting documents added.</div></div>
+                  <small class="support-upload-footnote">Supporting files are not stored in the request register. Attach the selected files and request PDF manually in your email window before sending.</small>
+                </section>
+                <div class="inline-reference"><span class="ref-icon">↗</span><div><strong>Need to Verify a Vendor?</strong><p>Check supplier information before submitting the request.</p></div><div class="inline-reference-links"><a id="vendor-master-link" href="#" target="_blank" rel="noopener noreferrer">Vendor Master Data – Power BI <span>↗</span></a><a id="purchase-pal-link" href="https://app.orolabs.ai/supplier/supplier-list#tid_coca_cola--cocacolaprod" target="_blank" rel="noopener noreferrer">Suppliers | Purchase Pal + <span>↗</span></a></div></div>
+              </section>
+
+              <section class="form-card">
+                <div class="form-section-head"><div class="section-number">03</div><div><h2>Requestor & Accounting</h2><p>Identify the requester and the account assignment.</p></div></div>
+                <div class="form-grid two-col">
+                  <div class="field"><label for="requestor-name">Requestor Name <em>*</em></label><input id="requestor-name" required maxlength="180" placeholder="Enter requestor name" /></div>
+                  <div class="field"><label for="requestor-email">Requestor Email</label><input id="requestor-email" type="email" maxlength="254" placeholder="name@company.com" /></div>
+                  <div class="field span-2"><span class="field-label">Account Assignment <em>*</em></span><div class="choice-grid"><label class="choice-card selected" id="choice-opex"><input type="radio" name="funding-type" value="OPEX" checked /><span class="choice-radio"></span><span class="choice-copy"><strong>Cost Center (OPEX)</strong><small>For operational spend charged to a cost center.</small></span><span class="choice-tag">OPEX</span></label><label class="choice-card" id="choice-capex"><input type="radio" name="funding-type" value="CAPEX"/><span class="choice-radio"></span><span class="choice-copy"><strong>WBS Number (CAPEX / Project)</strong><small>Use an approved project WBS that ends in 90XXX or 00XXX.</small></span><span class="choice-tag">WBS</span></label></div></div>
+                  <div class="field" id="cost-center-field"><label for="cost-center">Cost Center <em>*</em></label><select id="cost-center" data-allow-custom="true" data-placeholder="Search or type a cost center"><option value="">Choose a region first</option></select><small>Search the list or type a value manually if the required cost center is not available.</small></div>
+                  <div class="field hidden" id="wbs-field"><label for="wbs-number">WBS Number <em>*</em></label><input id="wbs-number" maxlength="140" placeholder="e.g. E-00001234-90100" /><small>WBS must end in <strong>90XXX</strong> or <strong>00XXX</strong>. Examples: E-00001234-90100 or E-00001234-00100.</small></div>
+                  
+                  <div class="field"><label for="request-notes">Request Notes</label><input id="request-notes" maxlength="1000" placeholder="Optional context for the reviewer" /></div>
+                </div>
+                <div class="mapping-note"><span>ⓘ</span><div><strong>GL Code Mapping</strong><p>For OPEX, choose a matching GL account from the master list. For WBS requests, the app applies the workbook's 90xxx / 00xxx suffix rules when recognized; otherwise confirm the project classification on each line.</p></div></div>
+              </section>
+
+              <section class="form-card">
+                <div class="form-section-head"><div class="section-number">04</div><div><h2>Delivery Schedule</h2><p>Specify frequency and the expected delivery window.</p></div></div>
+                <div class="form-grid four-col">
+                  <div class="field"><label for="delivery-frequency">Delivery Frequency</label><select id="delivery-frequency"><option value="">Select frequency</option><option>One-time</option><option>Monthly</option><option>Quarterly</option></select></div>
+                  <div class="field"><label for="start-delivery">Start Delivery Date</label><input id="start-delivery" type="date" /></div>
+                  <div class="field"><label for="end-delivery">End Delivery Date</label><input id="end-delivery" type="date" /></div>
+                  <div class="field"><label for="delivery-count">No. of Times</label><input id="delivery-count" type="number" min="1" step="1" placeholder="e.g. 12" /></div>
+                </div>
+              </section>
+
+              <section class="form-card line-items-card">
+                <div class="form-section-head"><div class="section-number">05</div><div><h2>PO line items</h2><p>Add all goods or services covered by this request.</p></div><button type="button" class="button button-secondary button-small add-row-button" id="add-line"><span>＋</span> Add line item</button></div>
+                <div class="line-table-subhead"><span><b id="line-count-label">1 line item</b><span class="subhead-sep">·</span> <span>Line total is calculated automatically</span></span><button type="button" class="subtle-button" id="clear-lines">Clear rows</button></div>
+                <div class="line-item-limit-note" id="line-item-limit-note" role="status">Maximum 20 line items per PO request. If more are needed, create separate PO requests.</div>
+                <div class="line-table-scroll"><table class="line-table"><thead><tr><th class="col-line-number">#</th><th class="col-type">TYPE <i>*</i></th><th class="wbs-only">WBS GL CODE</th><th class="cc-only">COST CENTER GL CODE</th><th>GL CODE</th><th class="col-description">DESCRIPTION <i>*</i></th><th class="col-delivery-date">DELIVERY DATE</th><th class="cc-only">COST CENTER</th><th>QUANTITY <i>*</i></th><th>UNIT PRICE <i>*</i></th><th>TOTAL</th><th>ACTIONS</th></tr></thead><tbody id="line-items-body"></tbody></table></div>
+                <div class="line-table-footer"><div class="table-tip"><span>ⓘ</span> Choose an approved GL account or type a GL code manually if it is not listed.</div><div class="po-total-card"><span>PO VALUE</span><strong id="form-po-total">0.00</strong><small id="total-currency-label">Select currency</small></div></div>
+              </section>
+              <div class="form-footer-actions"><button type="button" class="button button-quiet" id="clear-form">Clear form</button><div><span class="save-note" id="save-note">Changes are not saved yet</span><button type="button" class="button button-secondary" id="save-draft">Save Draft</button><button type="button" class="button button-primary" id="submit-request">Submit request <span>→</span></button></div></div>
+            </form>
+            <aside class="form-summary-rail">
+              <div class="summary-rail-card summary-rail-card-details">
+                <div class="summary-rail-heading"><div class="summary-rail-icon" aria-hidden="true">▤</div><div><h3>Request summary</h3><p>Live summary of your request.</p></div></div>
+                <div class="summary-divider"></div>
+                <div class="summary-row summary-row-with-icon"><span class="summary-row-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 3.5h7l4 4V20H7z"/><path d="M14 3.5v4h4M10 12h5M10 15.5h5"/></svg></span><span class="summary-row-label">PO Title</span><strong id="summary-title">Not entered</strong></div>
+                <div class="summary-row summary-row-with-icon"><span class="summary-row-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M3.8 12h16.4M12 3.5c2.2 2.4 3.2 5.2 3.2 8.5s-1 6.1-3.2 8.5c-2.2-2.4-3.2-5.2-3.2-8.5s1-6.1 3.2-8.5z"/></svg></span><span class="summary-row-label">Region</span><strong id="summary-region">Not selected</strong></div>
+                <div class="summary-row summary-row-with-icon"><span class="summary-row-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="14" rx="2"/><path d="M8 9h8M8 12h5M8 15h3"/></svg></span><span class="summary-row-label">Vendor</span><strong id="summary-vendor">Not entered</strong></div>
+                <div class="summary-row summary-row-with-icon"><span class="summary-row-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 20V8l8-4 8 4v12M8 11h2M14 11h2M8 15h2M14 15h2M10 20v-2h4v2"/></svg></span><span class="summary-row-label">Vendor Name</span><strong id="summary-vendor-name">Not entered</strong></div>
+                <div class="summary-row summary-row-with-icon"><span class="summary-row-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 20V5h16v15M8 8h2M14 8h2M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span><span class="summary-row-label">Company Code</span><strong id="summary-company-code">Not selected</strong></div>
+                <div class="summary-row summary-row-with-icon"><span class="summary-row-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3.5 20V9l6-4v4l5-3v5h6v9zM7 14h2M12 14h2M17 14h1M7 17h2M12 17h2M17 17h1"/></svg></span><span class="summary-row-label">Plant Code</span><strong id="summary-plant-code">Not selected</strong></div>
+                <div class="summary-row summary-row-with-icon"><span class="summary-row-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 8h3M8 12h8M8 16h5M15 7v2"/></svg></span><span class="summary-row-label">Cost Center OR WBS</span><strong id="summary-account-value">Not selected</strong></div>
+                <div class="summary-row summary-row-with-icon"><span class="summary-row-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3.5" y="6" width="17" height="12" rx="2"/><path d="M3.5 10h17M7 14h3"/></svg></span><span class="summary-row-label">Currency</span><strong id="summary-currency-code">Select a currency</strong></div>
+                <div class="summary-total summary-total-final"><span>Estimated PO value</span><strong id="summary-total">0.00</strong></div>
+                <div class="summary-currency" id="summary-currency">Select a currency</div>
+              </div>
+              <div class="summary-help"><span class="help-icon small">i</span><div><strong>Remember</strong><p>Incomplete details can delay PO processing. Check codes and currency before submitting.</p></div></div>
+            </aside>
+          </div>
+        </section>
+
+
+        <section class="view" id="view-track">
+          <section class="track-hero-banner" aria-label="Track your purchase order request">
+            <div class="track-hero-copy">
+              <div class="track-hero-kicker"><i></i> REQUEST TRACKING <span></span></div>
+              <h1>Track <em>My Request</em></h1>
+              <h2>Every request, clearly tracked.</h2>
+              <p>Find and track your submitted purchase order requests in one place.</p>
+              <div class="track-hero-benefits"><span><i>✓</i> Clear status visibility</span><span><i>✓</i> Guided workflow</span><span><i>✓</i> Faster follow-up</span></div>
+            </div>
+            <div class="track-hero-brand-note"><strong>Together for a<br />Brighter Tomorrow</strong><span></span></div>
+          </section>
+          <div class="track-workspace-layout">
+            <div class="track-workspace-main">
+              <section class="panel track-register-panel track-search-card">
+                <div class="track-register-head">
+                  <div><span class="track-register-icon" aria-hidden="true">⌕</span><div><h2>Search requests</h2><p>Search by Request ID, Requestor Name or Vendor Name / Number. Use the optional tracking code for extra verification.</p></div></div>
+                  <div class="track-search-note"><span aria-hidden="true">ⓘ</span><div><strong>Private tracking code is optional</strong><small>When entered, it must match the Request ID to verify the request.</small></div></div>
+                </div>
+                <form id="track-search-form" class="track-register-filters track-search-fields" novalidate>
+                  <div class="field"><label for="track-request-id-search">Request ID</label><input id="track-request-id-search" maxlength="80" placeholder="e.g. PO-2026-0001" autocomplete="off" /></div>
+                  <div class="field"><label for="track-requestor-search">Requestor Name</label><input id="track-requestor-search" maxlength="180" placeholder="Enter requestor name" autocomplete="off" /></div>
+                  <div class="field"><label for="track-vendor-search">Vendor name or number</label><input id="track-vendor-search" maxlength="220" placeholder="Enter vendor name or number" autocomplete="off" /></div>
+                  <div class="field"><label for="track-code-search">Tracking code (optional)</label><input id="track-code-search" maxlength="120" placeholder="Enter tracking code" autocomplete="off" /></div>
+                  <div class="track-filter-actions"><button class="button button-secondary" id="track-clear-filters" type="button">↻ Clear</button><button class="button button-primary" type="submit" id="track-search-submit"><span>⌕</span> Search</button></div>
+                </form>
+              </section>
+
+              <section class="panel track-filter-panel" aria-label="Request filters">
+                <div class="track-filter-mark"><span aria-hidden="true">⚑</span> Filters <small class="track-auto-badge">Auto</small></div>
+                <div class="field"><label for="track-region-filter">Region</label><select id="track-region-filter"><option value="">All regions</option></select></div>
+                <div class="field"><label for="track-status-filter">Status</label><select id="track-status-filter"><option value="">All statuses</option><option value="Request Submitted on PP+">Submitted on PP+</option><option value="Pending">Pending for Approval</option><option value="Submitted to PO Team">Submitted to PO Team</option><option value="Clarification Required">Clarification Required</option><option value="Rejected">Rejected</option><option value="PO Created">PO Created</option></select></div>
+                <div class="field"><label for="track-date-from">From date</label><input id="track-date-from" type="date" /></div>
+                <div class="field"><label for="track-date-to">To date</label><input id="track-date-to" type="date" /></div>
+                <div class="field track-sort-field"><label for="track-sort">Sort by</label><select id="track-sort"><option value="request-desc">Request date (Latest first)</option><option value="request-asc">Request date (Oldest first)</option><option value="updated-desc">Last updated (Latest first)</option><option value="updated-asc">Last updated (Oldest first)</option></select></div>
+                <button class="button button-secondary track-filter-clear-button" id="track-clear-only-filters" type="button">✕ Clear filters</button>
+              </section>
+
+            </div>
+
+            <section class="panel track-results-panel">
+                <div class="track-results-toolbar"><div class="track-results-title"><span class="track-results-icon" aria-hidden="true">▤</span><div><h2>Search results <span id="track-result-count" class="track-count-badge">0 requests</span></h2><p id="track-search-summary">Search by Request ID, Requestor, Vendor, or use filters. Filter changes update results automatically.</p></div></div><div class="track-results-actions"><label class="track-auto-refresh-control" for="track-auto-refresh-toggle"><input id="track-auto-refresh-toggle" type="checkbox" /> <span>Auto-refresh <small>30 sec</small></span></label><button class="button button-secondary" id="track-refresh-results" type="button">↻ Refresh</button><button class="button button-secondary" id="track-export-results" type="button" disabled>⇩ Export (Excel)</button></div></div>
+                <div class="track-register-meta"><span>Click a Request ID to view the full request details.</span><span>Latest saved status is shown for each request.</span></div>
+                <div id="track-search-results" class="track-search-results hidden" aria-live="polite"></div>
+                <div class="track-initial-state" id="track-initial-state"><div class="track-initial-icon" aria-hidden="true">⌕</div><strong>Find your PO request</strong><p>Enter a Request ID, Requestor name or Vendor name/number above. You can also filter by region, status or request date.</p></div>
+              </section>
+
+            <aside class="track-progress-sidebar" aria-label="Selected request progress">
+              <section class="panel track-progress-card">
+                <div class="track-progress-head"><span class="track-progress-icon" aria-hidden="true">▤</span><div><h2>Request Progress</h2><p id="track-progress-subtitle">Track the current status of your selected request.</p></div><span id="track-progress-request-id" class="track-progress-id hidden"></span></div>
+                <div id="track-progress-body" class="track-progress-body" aria-live="polite">
+                  <div class="track-progress-empty"><span class="track-progress-empty-icon">⌕</span><strong>Select a request to view progress</strong><p>Search for a request, then select its Request ID to see the latest workflow stage.</p></div>
+                </div>
+                <button class="button button-primary track-progress-detail-button" id="track-progress-view-details" type="button" data-action="open-track-request" data-request-id="" disabled><span aria-hidden="true">▤</span> View full details <span aria-hidden="true">→</span></button>
+              </section>
+            </aside>
+          </div>
+          <section class="track-quote-banner" aria-label="Procurement motto"><span class="track-quote-mark">“</span><div><strong>Great things happen when every detail moves forward.</strong><p>Clear requests. Better collaboration. Stronger outcomes.</p></div><img src="assets/home-red-ribbon.svg" alt="" aria-hidden="true" /></section>
+        </section>
+
+        <section class="view" id="view-details">
+          <div id="request-detail-page-content" class="request-detail-page-content" aria-live="polite"></div>
+        </section>
+
+        <section class="view" id="view-email">
+          <div class="page-heading email-preview-heading">
+            <div><div class="eyebrow"><span class="eyebrow-dot"></span> FINAL STEP</div><h1>Your Request Is Ready for Procurement</h1><p>Review the details below, then open your email draft to send the request to the GRW team. Nothing is sent automatically.</p></div>
+            <div class="heading-actions"><button class="button button-secondary" type="button" data-action="email-preview-back" id="email-preview-back-label">← Track My Request</button><button class="button button-primary" type="button" data-action="open-email-compose">↗ Open Email Draft</button></div>
+          </div>
+          <section class="email-confirmation-stepper" aria-label="Email confirmation progress">
+            <div class="email-confirmation-step is-complete"><span class="email-confirmation-step-icon" aria-hidden="true">✓</span><div><strong>Request Saved</strong><p>Your PO request has been saved successfully.</p></div></div>
+            <span class="email-confirmation-connector" aria-hidden="true"></span>
+            <div class="email-confirmation-step is-complete"><span class="email-confirmation-step-icon" aria-hidden="true">✓</span><div><strong>Email Prepared</strong><p>A formatted email with request details is ready.</p></div></div>
+            <span class="email-confirmation-connector" aria-hidden="true"></span>
+            <div class="email-confirmation-step is-current"><span class="email-confirmation-step-icon" aria-hidden="true">3</span><div><strong>Awaiting Your Send</strong><p>Open the draft, review it and send it to GRW.</p></div></div>
+          </section>
+          <div class="email-preview-layout email-confirmation-layout">
+            <section class="panel email-preview-compose">
+              <div class="email-preview-panel-head"><span class="email-preview-icon" aria-hidden="true">✉</span><div><h2>Email Preview</h2><p>Review the recipient, subject, message and request details.</p></div><span class="email-preview-unsent"><i></i> Ready for your review · Not sent</span></div>
+              <div id="email-preview-tracking" class="email-preview-tracking hidden"><div><strong>Private Tracking Code (Optional)</strong><small>Keep this code private; you can also track using the Request ID.</small><code id="email-preview-tracking-code">—</code></div><button class="button button-secondary button-small" type="button" data-action="copy-email-tracking">Copy Code</button></div>
+              <div class="email-envelope-fields">
+                <div class="email-envelope-row"><label for="email-preview-to">To</label><div id="email-preview-to" class="email-envelope-value">grw-global-p2prequests@coca-cola.com</div></div>
+                <div class="email-envelope-row email-optional-recipient-row"><label for="email-preview-cc">Cc / Bcc (Optional)</label><div class="email-recipient-inputs"><input id="email-preview-cc" type="text" autocomplete="off" placeholder="Cc addresses, separated by commas" aria-label="Cc email addresses, optional"/><input id="email-preview-bcc" type="text" autocomplete="off" placeholder="Bcc addresses, separated by commas" aria-label="Bcc email addresses, optional"/></div></div>
+                <div class="email-envelope-row"><label for="email-preview-subject">Subject</label><div id="email-preview-subject" class="email-envelope-value email-subject-value">[TCCC PO REQUEST] Request received — PO-2026-0001</div></div>
+              </div>
+              <div class="email-body-preview" id="email-preview-body" aria-live="polite"></div>
+              <div class="email-preview-compose-footer"><span id="email-preview-request-id">Request ID: —</span><span>Prepared from the submitted PO request · Not sent</span></div>
+            </section>
+            <aside class="email-preview-side email-confirmation-side">
+              <section class="panel email-confirmation-card">
+                <div class="email-side-head"><span class="email-side-icon" aria-hidden="true">▤</span><div><h2>Request Confirmation</h2><p>Your request is ready. Please send the email to the GRW team.</p></div></div>
+                <div class="email-confirmation-timeline">
+                  <div class="email-confirmation-timeline-item is-done"><span class="email-confirmation-timeline-mark" aria-hidden="true">✓</span><div><strong>Request Saved</strong><p>Your PO request has been saved successfully.</p></div></div>
+                  <div class="email-confirmation-timeline-item is-done"><span class="email-confirmation-timeline-mark" aria-hidden="true">✓</span><div><strong>Email Draft Prepared</strong><p>A formatted email with request details is ready.</p></div></div>
+                  <div class="email-confirmation-timeline-item is-pending"><span class="email-confirmation-timeline-mark" aria-hidden="true">3</span><div><strong>Awaiting Your Send</strong><p>The GRW team receives the email only after you send it.</p></div></div>
+                </div>
+                <div class="email-confirmation-actions"><button class="button button-primary email-open-draft-button" type="button" data-action="open-email-compose"><span aria-hidden="true">➤</span> Open Email Draft <span aria-hidden="true">→</span></button><button class="button button-secondary email-confirmation-pdf-button" type="button" data-action="print-email-preview"><span aria-hidden="true">▧</span> Preview Request PDF</button></div>
+                <div class="email-confirmation-note"><span class="email-confirmation-note-icon" aria-hidden="true">i</span><div><strong>Nothing is sent automatically.</strong><p>Review the recipient, request details and attachments, then send from your email application.</p></div></div>
+              </section>
+              <section class="panel email-attachment-card email-confirmation-attachments"><div class="email-side-head"><span class="email-side-icon" aria-hidden="true">⌁</span><div><h2>Files to Attach</h2><p id="email-preview-attachment-count">1 file</p></div></div><div id="email-preview-attachments" class="email-attachment-list"></div><div class="email-attachment-note" id="email-preview-attachment-note">The request PDF and selected supporting documents will be attached when the formatted draft is available. Review the attachment list before sending.</div></section>
+              <section class="email-confirmation-quote" aria-label="Procurement motto"><div><strong>Clear Requests. Better Collaboration.</strong><p>Stronger outcomes.</p><span>COCA-COLA · PROCUREMENT WORKSPACE</span></div><img src="assets/home-red-ribbon.svg" alt="" aria-hidden="true"/></section>
+            </aside>
+          </div>
+        </section>
+
+        <section class="view reviewer-only" id="view-requests">
+          <div class="page-heading reviewer-console-heading">
+            <div><div class="eyebrow"><span class="eyebrow-dot"></span> REVIEWER CONSOLE</div><h1>Review &amp; Manage PO Requests</h1><p>Track, review and update purchase order requests.</p></div>
+          </div>
+          <div class="reviewer-kpi-grid" aria-label="Request status summary">
+            <article class="reviewer-kpi kpi-ppplus"><span class="reviewer-kpi-icon">✓</span><div><strong id="reviewer-kpi-ppplus">0</strong><span>Submitted on PP+</span><small>Sent to procurement</small></div></article>
+            <article class="reviewer-kpi kpi-pending"><span class="reviewer-kpi-icon">◷</span><div><strong id="reviewer-kpi-pending">0</strong><span>Pending for Approval</span><small>Awaiting review</small></div></article>
+            <article class="reviewer-kpi kpi-clarification"><span class="reviewer-kpi-icon">◌</span><div><strong id="reviewer-kpi-clarification">0</strong><span>Clarification Required</span><small>Needs more information</small></div></article>
+            <article class="reviewer-kpi kpi-created"><span class="reviewer-kpi-icon">✓</span><div><strong id="reviewer-kpi-created">0</strong><span>PO Created</span><small>Purchase order issued</small></div></article>
+            <article class="reviewer-kpi kpi-rejected"><span class="reviewer-kpi-icon">×</span><div><strong id="reviewer-kpi-rejected">0</strong><span>Rejected</span><small>Not approved</small></div></article>
+          </div>
+          <div class="reviewer-console-layout">
+            <div class="reviewer-console-main">
+              <section class="panel reviewer-search-panel">
+                <div class="reviewer-panel-heading"><span class="reviewer-panel-icon">⚲</span><div><h2>Search &amp; Filters</h2><p>Find requests using multiple filters. Leave fields blank to show all requests.</p></div><div class="reviewer-filter-head-actions"><button type="button" class="button button-secondary button-small" id="clear-request-filters">↻ Clear filters</button><button type="button" class="button button-primary button-small" id="review-search-button">⌕ Search</button></div></div>
+                <div class="reviewer-filter-grid">
+                  <div class="field"><label for="request-search">Request ID / PO title</label><input id="request-search" type="search" placeholder="Search by Request ID or PO title" /></div>
+                  <div class="field"><label for="requestor-filter">Requestor Name</label><input id="requestor-filter" type="search" placeholder="Search requester…" /></div>
+                  <div class="field"><label for="vendor-number-filter">Vendor name / number</label><input id="vendor-number-filter" type="search" placeholder="Search vendor…" /></div>
+                  <div class="field"><label for="region-filter">Region</label><select id="region-filter" aria-label="Filter by region"><option value="">All regions</option></select></div>
+                  <div class="field"><label for="status-filter">Status</label><select id="status-filter" aria-label="Filter by status"><option value="All statuses">All statuses</option><option value="Request Submitted on PP+">Submitted on PP+</option><option value="Pending">Pending for Approval</option><option value="Submitted to PO Team">Submitted to PO Team</option><option value="Clarification Required">Clarification Required</option><option value="Rejected">Rejected</option><option value="PO Created">PO Created</option></select></div>
+                  <div class="field"><label for="oro-number-filter">ORO</label><input id="oro-number-filter" type="search" placeholder="Search ORO…" /></div>
+                  <div class="field"><label for="po-number-filter">PO Number</label><input id="po-number-filter" type="search" placeholder="Search PO number…" /></div>
+                  <div class="field"><label for="request-date-from">From date</label><input id="request-date-from" type="date" /></div>
+                  <div class="field"><label for="request-date-to">To date</label><input id="request-date-to" type="date" /></div>
+                </div>
+                <details class="reviewer-advanced-options"><summary>Sorting &amp; page size</summary><div class="reviewer-advanced-grid"><div class="field"><label for="request-sort">Sort by</label><select id="request-sort"><option value="updated-desc">Last updated (newest)</option><option value="date-desc">Request date (newest)</option><option value="date-asc">Request date (oldest)</option><option value="value-desc">PO value (high to low)</option><option value="requestor-asc">Requestor name (A–Z)</option></select></div><div class="field"><label for="request-page-size">Rows per page</label><select id="request-page-size"><option value="10">10 rows</option><option value="20">20 rows</option><option value="50">50 rows</option><option value="100">100 rows</option></select></div></div></details>
+              </section>
+              <section class="panel reviewer-register-panel">
+                <div class="reviewer-panel-heading reviewer-results-heading"><span class="reviewer-panel-icon">▤</span><div><h2>Purchase Order Register</h2><p id="request-count">0 matching requests</p></div><button class="button button-secondary button-small" id="requests-export" type="button">↓ Export Excel</button></div>
+                <div class="table-wrap reviewer-register-wrap"><table class="data-table reviewer-register-table"><thead><tr><th class="reviewer-check-col"><input type="checkbox" id="reviewer-select-all" aria-label="Select visible requests" /></th><th>#</th><th>REQUEST ID</th><th>PO TITLE</th><th>VENDOR</th><th>REGION</th><th>STATUS</th><th>ORO</th><th>PO NUMBER</th><th>REQUEST DATE</th><th>LAST UPDATED</th><th>UPDATED BY</th><th>ACTIONS</th></tr></thead><tbody id="requests-body"></tbody></table></div>
+                <div class="pagination-bar hidden reviewer-pagination" id="requests-pagination"><span id="request-page-info">Showing 0–0 of 0</span><div class="pagination-actions"><span id="request-page-number">Page 1 of 1</span><button class="button button-secondary button-small" id="request-prev" type="button" data-page="prev">←</button><button class="button button-secondary button-small" id="request-next" type="button" data-page="next">→</button></div></div>
+                <div class="reviewer-empty-state hidden" id="requests-empty"><span>▤</span><strong>No matching requests</strong><p>Change your search or filter criteria.</p></div>
+              </section>
+            </div>
+            <aside class="reviewer-detail-column"><section class="panel reviewer-selected-panel" id="reviewer-detail-panel"><div class="reviewer-detail-header"><span class="reviewer-panel-icon">▤</span><div><h2>Request Details &amp; Update</h2><p>Choose a request from the register.</p></div></div><div id="reviewer-detail-body" class="reviewer-detail-body"><div class="reviewer-detail-empty"><span>▤</span><strong>Select a request</strong><p>Select a Request ID or use View / Update to see its details.</p></div></div></section></aside>
+          </div>
+        </section>
+
+        <section class="view reviewer-only" id="view-master">
+          <div class="page-heading"><div><div class="eyebrow"><span class="eyebrow-dot"></span> REFERENCE LIBRARY</div><h1>Master Data</h1><p>Browse lookup data extracted from the supplied PO workbook.</p></div><div class="heading-actions"><a class="button button-secondary link-button" id="master-vendor-link" href="#" target="_blank" rel="noopener noreferrer">Vendor Master Data ↗</a></div></div>
+          <div class="master-metric-grid"><article class="master-metric"><span class="metric-icon icon-teal">▦</span><div><strong id="master-gl-count">0</strong><span>GL accounts</span></div></article><article class="master-metric"><span class="metric-icon icon-blue">⌖</span><div><strong id="master-plant-count">0</strong><span>Plant codes</span></div></article><article class="master-metric"><span class="metric-icon icon-amber">▥</span><div><strong id="master-cc-count">0</strong><span>Cost centers</span></div></article><article class="master-metric"><span class="metric-icon icon-green">◉</span><div><strong id="master-region-count">0</strong><span>Regions</span></div></article></div>
+          <section class="panel master-panel"><div class="master-tabs" role="tablist"><button class="master-tab active" data-master-tab="gl" role="tab">GL accounts <span id="tab-gl-count">0</span></button><button class="master-tab" data-master-tab="costCenters" role="tab">Cost centers <span id="tab-cc-count">0</span></button><button class="master-tab" data-master-tab="plants" role="tab">Plant codes <span id="tab-plant-count">0</span></button><button class="master-tab" data-master-tab="regions" role="tab">Regions</button><button class="master-tab" data-master-tab="reviewerNames" role="tab">Updated by names</button><button class="master-tab" data-master-tab="companyCodes" role="tab">Company codes</button><button class="master-tab" data-master-tab="currencies" role="tab">Currencies</button></div><div class="master-toolbar"><div class="request-search"><span>⌕</span><input id="master-search" type="search" placeholder="Search master data" /></div><span class="result-count" id="master-result-count">0 rows</span><button class="button button-secondary button-small" id="master-refresh" type="button">↻ Refresh</button><button class="button button-primary button-small" id="master-add-record" type="button">＋ Add record</button></div><div class="master-editor hidden" id="master-editor"></div><div class="table-wrap master-table-wrap"><table class="data-table" id="master-table"><thead id="master-table-head"></thead><tbody id="master-table-body"></tbody></table></div><div class="master-footnote"><span>ⓘ</span><span>Reviewer-managed master data. Add, edit, or remove lookup values here; dropdown updates are refreshed in the app every five minutes. Back up the data directory regularly.</span></div></section>
+        </section>
+
+        <section class="view reviewer-only" id="view-reports" aria-labelledby="reports-title">
+          <section class="report-hero">
+            <div class="report-hero-copy">
+              <div class="eyebrow"><span class="eyebrow-dot"></span> REPORTS &amp; INSIGHTS</div>
+              <h1 id="reports-title">Reports &amp; Exports</h1>
+              <p>View insights, analyze procurement requests, and export data for reporting.</p>
+            </div>
+            <div class="report-hero-slogan"><strong>Smarter Procurement<br/>Better Insights</strong><span>For a Stronger Tomorrow</span></div>
+          </section>
+
+          <section class="panel report-filter-panel" aria-label="Report filters">
+            <div class="report-quick-ranges" role="group" aria-label="Quick report date range">
+              <button type="button" class="report-quick-range" data-report-range="30d">Last 30 Days</button>
+              <button type="button" class="report-quick-range" data-report-range="90d">Last 90 Days</button>
+              <button type="button" class="report-quick-range active" data-report-range="ytd" aria-pressed="true">This Year</button>
+              <button type="button" class="report-quick-range" data-report-range="12m">Last 12 Months</button>
+              <button type="button" class="report-quick-range" data-report-range="all">All Time</button>
+            </div>
+            <div class="report-filter-grid">
+              <div class="field report-date-field"><label>Date range</label><div class="report-date-range"><input id="report-from-date" type="date" aria-label="Report start date"/><span aria-hidden="true">–</span><input id="report-to-date" type="date" aria-label="Report end date"/></div></div>
+              <div class="field"><label for="report-region-filter">Region</label><select id="report-region-filter"><option value="">All regions</option></select></div>
+              <div class="field"><label for="report-status-filter">Status</label><select id="report-status-filter"><option value="">All statuses</option><option>Submitted to PO Team</option><option>Submitted on PP+</option><option>Pending for Approval</option><option>Clarification Required</option><option>PO Created</option><option>Rejected</option></select></div>
+              <div class="field"><label for="report-vendor-filter">Vendor</label><input id="report-vendor-filter" type="search" placeholder="Search vendor name or number…"/></div>
+              <div class="field"><label for="report-requestor-filter">Requestor</label><input id="report-requestor-filter" type="search" placeholder="Search requestor name…"/></div>
+              <div class="report-filter-actions"><button type="button" class="button button-secondary" id="report-clear-filters">↻ Clear filters</button><button type="button" class="button button-primary" id="report-generate">⚲ Generate report</button></div>
+            </div>
+            <div class="report-filter-feedback" id="report-filter-feedback" aria-live="polite">Choose filters, then generate a report.</div>
+          </section>
+
+          <section class="report-kpi-grid" aria-label="Report metrics">
+            <article class="report-kpi report-kpi-total"><span class="report-kpi-icon">▤</span><div><span>Total Requests</span><strong id="report-kpi-total">0</strong><small id="report-kpi-total-note">All matching requests</small></div></article>
+            <article class="report-kpi report-kpi-submitted"><span class="report-kpi-icon">✓</span><div><span>Submitted</span><strong id="report-kpi-submitted">0</strong><small id="report-kpi-submitted-note">Submitted on PP+</small></div></article>
+            <article class="report-kpi report-kpi-pending"><span class="report-kpi-icon">◷</span><div><span>Pending</span><strong id="report-kpi-pending">0</strong><small id="report-kpi-pending-note">Approval or clarification</small></div></article>
+            <article class="report-kpi report-kpi-rejected"><span class="report-kpi-icon">!</span><div><span>Rejected</span><strong id="report-kpi-rejected">0</strong><small id="report-kpi-rejected-note">Rejected requests</small></div></article>
+            <article class="report-kpi report-kpi-created"><span class="report-kpi-icon">✓</span><div><span>PO Created</span><strong id="report-kpi-created">0</strong><small id="report-kpi-created-note">PO successfully created</small></div></article>
+          </section>
+
+          <section class="report-charts-grid" aria-label="Procurement charts">
+            <article class="panel report-chart-panel report-trend-panel">
+              <div class="report-panel-heading"><span class="report-panel-icon">▥</span><div><h2>Monthly Request Trend</h2><p id="report-trend-subtitle">Monthly request volume for the selected period.</p></div><div class="report-chart-legend" id="report-trend-legend"><span><i class="legend-bar"></i>No. of Requests</span></div></div>
+              <div class="report-chart-wrap" id="report-trend-chart" aria-label="Monthly requests trend chart"><div class="report-chart-empty">Generate a report to see the monthly trend.</div></div>
+            </article>
+            <article class="panel report-chart-panel report-heatmap-panel">
+              <div class="report-panel-heading"><span class="report-panel-icon">▦</span><div><h2>Region &amp; Status Heatmap</h2><p id="report-heatmap-subtitle">Request counts by region and current status.</p></div></div>
+              <div id="report-heatmap-chart" class="report-heatmap-wrap"><div class="report-chart-empty">Generate a report to see the status heatmap.</div></div>
+              <div class="report-chart-footnote" id="report-heatmap-footnote">Cell colour indicates the relative request count.</div>
+            </article>
+            <article class="panel report-chart-panel report-region-panel">
+              <div class="report-panel-heading"><span class="report-panel-icon">◔</span><div><h2>Region-wise Request Volume</h2><p id="report-volume-subtitle">Requests by region in the selected period.</p></div></div>
+              <div id="report-volume-chart" class="report-region-chart"><div class="report-chart-empty">Generate a report to see regional request volume.</div></div>
+            </article>
+            <article class="panel report-chart-panel report-age-panel">
+              <div class="report-panel-heading"><span class="report-panel-icon">◷</span><div><h2>Pending Request Age</h2><p id="report-age-subtitle">Open requests grouped by age.</p></div></div>
+              <div id="report-age-chart" class="report-age-chart"><div class="report-chart-empty">Generate a report to see pending request age.</div></div>
+              <div class="report-chart-footnote">Age is calculated from the request date; created and rejected requests are excluded.</div>
+            </article>
+          </section>
+
+          <section class="panel report-register-panel">
+            <div class="report-panel-heading report-register-heading"><span class="report-panel-icon">▤</span><div><h2>Request Register</h2><p id="report-register-count">0 requests</p></div><div class="report-register-actions"><button type="button" class="button button-secondary button-small" id="report-export-excel">▣ Export Excel (20 columns)</button><button type="button" class="button button-secondary button-small report-pdf-button" id="report-export-pdf">▤ Export PDF summary</button><div class="report-column-picker"><button type="button" class="button button-secondary button-small" id="report-columns-toggle" aria-expanded="false" aria-controls="report-columns-menu">⚙ Columns</button><div class="report-column-menu hidden" id="report-columns-menu" aria-label="Choose report columns">
+                  <label><input type="checkbox" data-report-column="requestId" checked/> Request ID</label><label><input type="checkbox" data-report-column="requestDate" checked/> Request Date</label><label><input type="checkbox" data-report-column="title" checked/> PO Title</label><label><input type="checkbox" data-report-column="vendor" checked/> Vendor</label><label><input type="checkbox" data-report-column="region" checked/> Region</label><label><input type="checkbox" data-report-column="status" checked/> Status</label><label><input type="checkbox" data-report-column="value" checked/> PO Value</label><label><input type="checkbox" data-report-column="oro" checked/> ORO</label><label><input type="checkbox" data-report-column="poNumber" checked/> PO Number</label><label><input type="checkbox" data-report-column="requestor" checked/> Requestor</label><label><input type="checkbox" data-report-column="updated" checked/> Last Updated</label>
+                </div></div></div></div>
+            <div class="report-table-wrap"><table class="data-table report-register-table" id="report-register-table"><thead><tr><th data-col="requestId"><button type="button" data-report-sort="requestId">Request ID ↕</button></th><th data-col="requestDate"><button type="button" data-report-sort="requestDate">Request Date ↕</button></th><th data-col="title"><button type="button" data-report-sort="title">PO Title ↕</button></th><th data-col="vendor"><button type="button" data-report-sort="vendor">Vendor ↕</button></th><th data-col="region"><button type="button" data-report-sort="region">Region ↕</button></th><th data-col="status"><button type="button" data-report-sort="status">Status ↕</button></th><th data-col="value"><button type="button" data-report-sort="value">PO Value ↕</button></th><th data-col="oro"><button type="button" data-report-sort="oro">ORO ↕</button></th><th data-col="poNumber"><button type="button" data-report-sort="poNumber">PO Number ↕</button></th><th data-col="requestor"><button type="button" data-report-sort="requestor">Requestor ↕</button></th><th data-col="updated"><button type="button" data-report-sort="updated">Last Updated ↕</button></th><th data-col="actions">Actions</th></tr></thead><tbody id="report-register-body"></tbody></table></div>
+            <div class="report-register-empty hidden" id="report-register-empty"><span>⌕</span><strong>No requests match these report filters</strong><p>Adjust the date range or filter selections, then generate the report again.</p></div>
+            <div class="report-pagination"><span id="report-page-info">Showing 0 requests</span><div><label for="report-page-size">Rows per page</label><select id="report-page-size"><option value="10">10 per page</option><option value="20">20 per page</option><option value="50">50 per page</option><option value="100">100 per page</option></select><button type="button" class="button button-secondary button-small" id="report-page-prev" aria-label="Previous page">‹</button><span id="report-page-current">1</span><button type="button" class="button button-secondary button-small" id="report-page-next" aria-label="Next page">›</button></div></div>
+          </section>
+          <div class="notice-bar report-notice"><span class="notice-icon">i</span><div><strong>Currency handling</strong><p>PO values are grouped by currency in summaries and charts. Different currencies are never added together as if they were the same currency.</p></div></div>
+        </section>
+      </div>
+      <footer class="main-footer"><span>TCCC PO Request Portal <b>·</b> Procurement workspace</span><span class="main-footer-quote"><strong>“Great things happen when every detail moves forward.”</strong><small>Clear requests. Better collaboration. Stronger outcomes.</small></span></footer>
+    </main>
+  </div>
+
+  <div class="toast-region" id="toast-region" aria-live="polite" aria-atomic="true"></div>
+  <div class="modal-backdrop hidden reviewer-login-backdrop" id="reviewer-login-modal" role="dialog" aria-modal="true" aria-labelledby="reviewer-login-title" aria-describedby="reviewer-login-description">
+    <form class="reviewer-login-card" id="reviewer-login-form" autocomplete="on">
+      <div class="reviewer-login-brand"><span class="reviewer-login-mark">C</span><span><strong>TCCC PO Request Portal</strong><small>Secure reviewer access</small></span><button class="icon-button reviewer-login-close" type="button" id="reviewer-login-close" aria-label="Close reviewer login">×</button></div>
+      <div class="reviewer-login-icon" aria-hidden="true">♙</div>
+      <h2 id="reviewer-login-title">Reviewer Console</h2>
+      <p id="reviewer-login-description">Enter your reviewer access key to open the procurement review workspace.</p>
+      <label for="reviewer-key-input">Reviewer password / access key</label>
+      <div class="reviewer-password-wrap"><input id="reviewer-key-input" type="password" name="reviewer-key" autocomplete="current-password" placeholder="Enter reviewer access key" required maxlength="200" autocapitalize="off" spellcheck="false"/><button type="button" id="reviewer-password-toggle" aria-label="Show password" aria-pressed="false">Show</button></div>
+      <p class="reviewer-login-error" id="reviewer-login-error" role="alert" aria-live="polite"></p>
+      <div class="reviewer-login-actions"><button class="button button-secondary" type="button" id="reviewer-login-cancel">Cancel</button><button class="button button-primary" id="reviewer-login-submit" type="submit">Unlock Reviewer Console <span>→</span></button></div>
+      <small class="reviewer-login-security-note"><span>▣</span> Access is verified by the portal server. Your input is masked by default.</small>
+    </form>
+  </div>
+  <div class="modal-backdrop hidden" id="detail-modal" role="dialog" aria-modal="true" aria-labelledby="detail-title">
+    <div class="detail-modal-card"><div class="modal-head"><div><div class="eyebrow">REQUEST DETAILS</div><h2 id="detail-title">PO Request</h2><p id="detail-subtitle">—</p></div><button class="icon-button modal-close" id="close-detail" aria-label="Close details">×</button></div><div class="modal-scroll" id="detail-content"></div><div class="modal-footer" id="detail-actions"></div></div>
+  </div>
+
+  <script src="app.js?v=2.6.35-delete-master" defer></script>
+  <script src="iconography.js?v=2.6.33-full-width" defer></script>
+  <script src="motion-effects.js?v=motion-1" defer></script>
+  <script src="motion-pages.js?v=pages-1" defer></script>
+</body>
+</html>
